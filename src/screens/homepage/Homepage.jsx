@@ -22,7 +22,7 @@ const Homepage = () => {
     <>
       <Navbar/>
       <div className="max-w-full imageDiv">
-        <Carousel>
+        <Carousel autoSlide={true}>
           {slides.map((s, index) =>(
             <img key={index} src = {s} style={{height: "50vh"}}/>
           ))}
