@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar.jsx";
 import Carousel from "./components/Carousel.jsx";
+import NewspaperCard from "./components/NewspaperCard.jsx";
 
 // https://i.ibb.co/StpmrFP/wherda-arsianto-l7d-P0-O8-Dj60-unsplash.jpg
 // https://i.ibb.co/wR2W0Sy/waldemar-JYPDh4ter10-unsplash.jpg
@@ -15,15 +16,21 @@ const Homepage = () => {
     <>
       <Navbar />
       <div className="max-w-full">
-        <Carousel autoSlide={true}>
-          {/* {slides.map((s, index) => (
-            <img key={index} src={s.url} className="carouselImg"/>
-          ))}  */}
-        </Carousel>
+        <Carousel autoSlide={true}/>
       </div>
+      <div>
+        <NewspaperCard/>
+      </div>
+
+
+
     </>
   );
 };
 
 
 export default Homepage;
+
+{/* {slides.map((s, index) => (
+            <img key={index} src={s.url} className="carouselImg"/>
+          ))}  */}
