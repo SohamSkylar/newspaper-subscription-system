@@ -1,7 +1,9 @@
 import React from "react";
 import Navbar from "./components/Navbar.jsx";
-import Carousel from "./components/Carousel.jsx";
 import NewspaperCard from "./components/NewspaperCard.jsx";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import CarouselSlider from "./components/CarouselSlider.js";
 
 // https://i.ibb.co/StpmrFP/wherda-arsianto-l7d-P0-O8-Dj60-unsplash.jpg
 // https://i.ibb.co/wR2W0Sy/waldemar-JYPDh4ter10-unsplash.jpg
@@ -16,7 +18,8 @@ const Homepage = () => {
     <>
       <Navbar />
       <div className="max-w-full">
-        <Carousel autoSlide={true}/>
+        <CarouselSlider/>
+        
       </div>
       <div>
         <NewspaperCard/>

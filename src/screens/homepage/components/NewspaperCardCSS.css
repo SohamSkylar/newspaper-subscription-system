@@ -1,18 +1,21 @@
 .card{
-    width: 300px;
+    width: 350px;
     height: 500px;
     overflow: hidden;
     position: relative;
-    border-radius: 15px;
+    border-radius: 5px;
     margin-top: -40px;
     margin-left: 40px;
+    border: 7px solid black;
 }
 
 .card-img{
     width: 100%;
-    height: calc(100% + 80px);
-    object-fit: cover;
-    border-radius: 15px;
+    height: 100%;
+    background-color: white;
+    /* object-fit: cover; */
+    /* border-radius: 15px; */
+
 }
 
 .card-body{
@@ -29,6 +32,8 @@
     flex-direction: column;
     justify-content: center;
     transition: 1s;
+    /* margin-top: 5px; */
+    /* margin-bottom: 10px; */
 }
 
 .card:hover .card-body{
