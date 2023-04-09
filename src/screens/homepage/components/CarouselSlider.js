@@ -28,7 +28,7 @@ const CarouselSlider = () =>{
         {slides.map((item, index) =>{
           return <div key={index} className="carousel">
             <img key={index} src = {item.url} className="carouselInner"></img>
-            <div className="carDiv bg-black/30">
+            <div className="carDiv bg-black/20">
               <div key={index} className="flex flex-wrap text-3xl sm:text-4xl md:text-6xl lg:text-8xl">{item.text}</div>
             </div>
           </div>
