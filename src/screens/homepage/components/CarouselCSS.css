@@ -17,7 +17,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    transition: 2s;
     object-fit: cover;
 }
 .carDiv{
@@ -28,8 +27,16 @@
     backdrop-filter: blur(2px);
     display: flex;
     color: white;
+    overflow-wrap: normal;
     
 }
+.carText{
+  
+    
+
+}
+
+    
 
 
 
