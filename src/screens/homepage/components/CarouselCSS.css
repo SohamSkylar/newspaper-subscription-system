@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.carousel {
+    width: 100%;
+    height: calc(100vh - 80px);
+}
+
+.carouselInner {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    object-fit: cover;
+}
+.carDiv{
+    height: 85vh;
+    width:100%;
+    position: absolute;
+    top: 0;
+    backdrop-filter: blur(3px);
+    display: flex;
+    color: white;
+    overflow-wrap: normal;
+    
+}
+.carText{
+  margin-left: 50px;
+  padding: 30px;
+  align-items: center;
+  width: 40px;
+    
+
+}
+
+    
+
+
+
+
+
