@@ -23,14 +23,17 @@
     width:100%;
     position: absolute;
     top: 0;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     display: flex;
     color: white;
     overflow-wrap: normal;
     
 }
 .carText{
-  
+  margin-left: 50px;
+  padding: 30px;
+  align-items: center;
+  width: 40px;
     
 
 }
