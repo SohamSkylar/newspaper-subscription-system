@@ -1,0 +1,20 @@
+.btnclass{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    margin-top: -6rem;
+    position: relative;
+}
+
+.btn{
+    margin: 3px 18px;
+    padding: 5px 11px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+}
+
+.cardSection{
+    padding: 100px 30px;
+}
