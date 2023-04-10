@@ -1,0 +1,3 @@
+company_table
+
+attributes - company_id, company_name, 

@@ -1,5 +1,5 @@
 import React from 'react'
-import NewspaperCardCSS from './NewspaperCardCSS.css'
+import './NewspaperCardCSS.css';
 
 const NewspaperCard = () => {
     return (

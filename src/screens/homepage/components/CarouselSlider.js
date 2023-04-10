@@ -1,9 +1,9 @@
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { slides } from '../../../Helpers/CarouselData';
+import { slides } from '../../../helpers/CarouselData';
 import './CarouselCSS.css'
 
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 
 const CarouselSlider = () =>{
@@ -18,12 +18,10 @@ const CarouselSlider = () =>{
     cssEase: 'linear',
     speed: 2000,
     arrows: false
-
   };
 
   return (
     <div>
-      {/* <h2> Single Item</h2> */}
       <Slider {...settings}>
         {slides.map((item, index) =>{
           return <div key={index} className="carousel">

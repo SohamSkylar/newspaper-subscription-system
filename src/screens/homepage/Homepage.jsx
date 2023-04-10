@@ -17,11 +17,11 @@ const Homepage = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-full">
+      <div className="max-w-full" name="homePage">
         <CarouselSlider/>
         
       </div>
-      <div>
+      <div name="cardSection">
         <NewspaperCard/>
       </div>
 
