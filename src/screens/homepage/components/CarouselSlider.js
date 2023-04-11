@@ -14,9 +14,9 @@ const CarouselSlider = () =>{
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 6000,
     cssEase: 'linear',
-    speed: 2000,
+    speed: 3000,
     arrows: false
   };
 
