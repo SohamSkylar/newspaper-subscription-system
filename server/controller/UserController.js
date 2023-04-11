@@ -147,35 +147,32 @@ const loginUser = async (req, res) => {
   mysqlPool.getConnection((err, connection) => {
     if (err) return res.send({ msg: err.message });
     else if (connection) {
-      let username = req.body.username;
+      let email = req.body.email;
       let password = req.body.password;
       console.log("login api is active");
-      const sqlQuery = `SELECT * FROM ${tableName} WHERE username=?`;
-      connection.query(sqlQuery, username, async (err, result) => {
+      const sqlQuery = `SELECT * FROM ${tableName} WHERE email=?`;
+      connection.query(sqlQuery, email, async (err, result) => {
         if (err) return res.send({ msg: err.message });
         else if (result) {
           if (result.length === 0)
-            return res.status(400).send("INVALID_USERNAME");
+            return res.send({msg: "INVALID_EMAIL"});
           else if (result.length > 1)
-            return res.status(400).send("DUPLICATE_USERNAME");
+            return res.send({msg: "DUPLICATE_EMAIL"});
           else {
             const querypass = result[0].password;
             await bcrypt.compare(password, querypass).then((passwordCheck) => {
               if (!passwordCheck)
-                return res.status(400).send({ error: "Wrong Password!!" });
+                return res.send({ msg: "Wrong Password" });
               const token = jwt.sign(
                 {
-                  userid: result[0].id,
-                  username: result[0].username,
-                  steamid: result[0].steamid,
+                  custid: result[0].cust_id,
                   usertype: "customer",
                 },
                 ENV.JWT_SECRET,
                 { expiresIn: "24h" }
               );
               return res.status(200).send({
-                msg: "Login Successful...",
-                username: result[0].username,
+                msg: "Login Successful",
                 token,
               });
             });
@@ -368,14 +365,14 @@ const resetPassword = async (req, res) => {
 };
 
 const activeUser = async (req, res) => {
-  const userType = req.type;
-  const username = req.user.username;
+  const userType = req.user.usertype;
+  const custid= req.user.custid;
   if (userType === "admin") {
     res.status(201).json({ msg: "active", type: "admin" });
   } else
     res
       .status(201)
-      .json({ msg: "active", type: "customer", username: username });
+      .json({ msg: "active", type: "customer", custid: custid });
 };
 
 const checkSteamID = async (req, res) => {

@@ -36,11 +36,10 @@ export async function registerAdmin(admindetails) {
 export async function loginUser(userdetails) {
   try {
     const {
-      data: { token },
-      status,
+      data: { token, msg },
     } = await axios.post(`${BASE_URL}/login`, userdetails);
-    if (status === 200) return Promise.resolve(token);
-    else return Promise.reject();
+    if (msg === "Login Successful") return Promise.resolve(token);
+    else return Promise.reject(msg);
   } catch (error) {
     return Promise.reject(error);
   }
@@ -74,10 +73,12 @@ export async function updateUser(response) {
 export async function updatePassword(passwordDetails) {
   try {
     const token = await localStorage.getItem("token");
-    const {data: {msg}} = await axios.patch(`${BASE_URL}/update/pass`, passwordDetails, {
+    const {
+      data: { msg },
+    } = await axios.patch(`${BASE_URL}/update/pass`, passwordDetails, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (msg === 'success') return Promise.resolve()
+    if (msg === "success") return Promise.resolve();
     else return Promise.reject(msg);
   } catch (error) {
     return Promise.reject("Couldn't Update User...");
@@ -88,11 +89,13 @@ export async function activeUser() {
   try {
     const userToken = await localStorage.getItem("token");
     const {
-      data: { type, username },
+      data: { msg, type, custid },
     } = await axios.get(`${BASE_URL}/auth`, {
       headers: { Authorization: `Bearer ${userToken}` },
     });
-      return Promise.resolve({ type: type, username: username });
+    if (msg === "active")
+      return Promise.resolve({ type: type, custid: custid });
+    else return Promise.reject({ msg: "NO_USER_LOGIN" });
   } catch (err) {
     return Promise.reject({ error: "Auth Failed" });
   }
@@ -176,15 +179,18 @@ export async function getUserID(username) {
 //   }
 // }
 
-export async function getSpecificUser(username){
-  try{
-    const {data: {msg, result}} = await axios.get(`http://localhost:8001/api/user/${username}`)
-    if(msg==="success")
-      return Promise.resolve({steamid: result[0].steamid, email: result[0].email});
-    else
-      return Promise.reject(msg);
-
-  }catch(error){
-    return {error:"Password Doesnt Match.."}
+export async function getSpecificUser(username) {
+  try {
+    const {
+      data: { msg, result },
+    } = await axios.get(`http://localhost:8001/api/user/${username}`);
+    if (msg === "success")
+      return Promise.resolve({
+        steamid: result[0].steamid,
+        email: result[0].email,
+      });
+    else return Promise.reject(msg);
+  } catch (error) {
+    return { error: "Password Doesnt Match.." };
   }
 }

@@ -28,7 +28,7 @@ const userRouter = express.Router();
 
 //Get method
 userRouter.get("/", getAllCustomer);
-userRouter.get("/:username", getSpecificUser);
+userRouter.get("/username/:username", getSpecificUser);
 // userRouter.get("/generateOTP", verifyUser, localVariables, generateOTP);
 // userRouter.get("/verifyOTP", verifyOTP);
 userRouter.get("/auth", auth, activeUser);
