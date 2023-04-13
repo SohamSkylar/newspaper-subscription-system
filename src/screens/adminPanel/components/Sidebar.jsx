@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const menus = [
-    { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-    { name: "user", link: "/", icon: AiOutlineUser },
-    { name: "messages", link: "/", icon: FiMessageSquare },
+    { name: "dashboard", link: "first", icon: MdOutlineDashboard },
+    { name: "user", link: "second", icon: AiOutlineUser },
+    { name: "messages", link: "third", icon: FiMessageSquare },
     { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
     { name: "File Manager", link: "/", icon: FiFolder },
     { name: "Cart", link: "/", icon: FiShoppingCart },
@@ -65,7 +65,6 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="m-3 text-xl text-gray-900 font-semibold">
-        REACT TAILWIND
       </div>
     </section>
   );
