@@ -55,7 +55,7 @@ const Comp1 = ({ open, setOpen }) => {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
               <label
-                for="username"
+                for="companyName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Company Name
@@ -66,9 +66,9 @@ const Comp1 = ({ open, setOpen }) => {
                   <input
                     type="text"
                     required
-                    name="username"
-                    id="username"
-                    autocomplete="username"
+                    name="companyName"
+                    id="companyName"
+                    autocomplete="companyName"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Enter Company Name"
                     {...formik.getFieldProps("comanyName")}
@@ -78,7 +78,7 @@ const Comp1 = ({ open, setOpen }) => {
             </div>
             <div className="sm:col-span-4">
               <label
-                for="username"
+                for="companyId"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Company ID
@@ -89,9 +89,9 @@ const Comp1 = ({ open, setOpen }) => {
                   <input
                     type="text"
                     required
-                    name="username"
-                    id="username"
-                    autocomplete="username"
+                    name="companyId"
+                    id="companyId"
+                    autocomplete="companyId"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Enter Company ID"
                     {...formik.getFieldProps("comanyId")}
@@ -215,7 +215,7 @@ const Comp1 = ({ open, setOpen }) => {
           </div>
           <div className="col-span-full">
               <label
-                for="cover-photo"
+                for="cover-photo2"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Upload photo (Optional)
@@ -242,8 +242,8 @@ const Comp1 = ({ open, setOpen }) => {
                       <span>Upload a file</span>
                       <input
                         {...formik.getFieldProps("img2")}
-                        id="file-upload"
-                        name="file-upload"
+                        id="file-upload2"
+                        name="file-upload2"
                         type="file"
                         className="sr-only"
                       />
