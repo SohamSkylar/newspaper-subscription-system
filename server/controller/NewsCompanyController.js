@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const ENV = require("../config.js");
 const mysqlPool = require("../database/mysqlConnection.js");
 
-const tableName = "companylist";
+const tableName = "company";
 
 const showAllNewsCompany = async (req, res) => {
   mysqlPool.getConnection((err, connection) => {
@@ -25,23 +25,44 @@ const addNewsCompany = async (req, res) => {
   mysqlPool.getConnection((err, connection) => {
     if (err) return res.send({ msg: err.message });
     else if (connection) {
-      console.log("add new server api activated");
+      console.log("add new company api activated");
+      let company_id = req.body.company_id;
       let name = req.body.name;
-      let ip = req.body.ip;
-      let port = req.body.port;
-      let rcon = req.body.rcon;
+      let email = req.body.email;
+      let img1 = req.body.img1;
+      let img2 = req.body.img2;
 
-      if (rcon) {
-        const sqlQuery = `INSERT INTO ${tableName} (name, ip, port, rcon) VALUES(?,?,?,?)`;
-        connection.query(sqlQuery, [name, ip, port, rcon], (err, result) => {
-          if (err) return res.send({ msg: err.message });
-          else if (result) {
-            return res.status(201).send({
-              msg: "success",
-              serverid: Number(result.insertId.toString()),
-            });
+      let sqlQuery;
+      if (img2) {
+        sqlQuery = `INSERT INTO ${tableName} (company_id, name, email, img1, img2) VALUES(?,?,?,?,?)`;
+        connection.query(
+          sqlQuery,
+          [company_id, name, email, img1, img2],
+          (err, result) => {
+            if (err) {
+              if(err.message.includes('Duplicate')) return res.send({ msg: "DUPLICATE_ID" });
+              else return res.send({ msg: err.message });
+            }
+            else if (result) {
+              return res.status(201).send({ msg: "success" });
+            }
           }
-        });
+        );
+      } else {
+        sqlQuery = `INSERT INTO ${tableName} (company_id, name, email, img1) VALUES(?,?,?,?)`;
+        connection.query(
+          sqlQuery,
+          [company_id, name, email, img1],
+          (err, result) => {
+            if (err) {
+              if(err.message.includes('Duplicate')) return res.send({ msg: "DUPLICATE_ID" });
+              else return res.send({ msg: err.message });
+            }
+            else if (result) {
+              return res.status(201).send({ msg: "success" });
+            }
+          }
+        );
       }
     }
     connection.release();

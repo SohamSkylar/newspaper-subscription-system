@@ -5,7 +5,7 @@ const userRouter = require("./router/userRouter");
 const dotenv = require("dotenv").config({ path: "./server/.env" });
 var fs = require("fs");
 const path = require("path");
-const newsCompanyRouter = require("./router/newsCompanyRouter");
+const partnerRouter = require("./router/newsCompanyRouter");
 const subscriptionRouter = require("./router/subscriptionRouter");
 const mysqlPool = require("./database/mysqlConnection");
 
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 //api routes
 app.use("/api/user", userRouter);
-app.use("/api/newscompany", newsCompanyRouter);
+app.use("/api/partner", partnerRouter);
 app.use("/api/subs", subscriptionRouter);
 
 app.listen(PORT, () => {
