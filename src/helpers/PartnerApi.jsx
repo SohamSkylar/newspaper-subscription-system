@@ -14,3 +14,13 @@ export async function registerPartner(partnerdetails) {
     return Promise.reject(error.message);
   }
 }
+
+export async function showAllPartners() {
+  try {
+    const { data } = await axios.get(`${BASE_URL}`);
+    //console.log(data)
+    return Promise.resolve(data);
+  } catch (err) {
+    return Promise.reject(err.message);
+  }
+}

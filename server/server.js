@@ -8,6 +8,7 @@ const path = require("path");
 const partnerRouter = require("./router/newsCompanyRouter");
 const subscriptionRouter = require("./router/subscriptionRouter");
 const mysqlPool = require("./database/mysqlConnection");
+const paperRouter = require("./router/paperRouter");
 
 const PORT = process.env.PORT;
 
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
 //api routes
 app.use("/api/user", userRouter);
 app.use("/api/partner", partnerRouter);
+app.use("/api/paper", paperRouter);
 app.use("/api/subs", subscriptionRouter);
 
 app.listen(PORT, () => {

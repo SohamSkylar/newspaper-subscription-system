@@ -21,6 +21,22 @@ const showAllNewsCompany = async (req, res) => {
   });
 };
 
+const showAllNewsCompanyID = async (req, res) => {
+  mysqlPool.getConnection((err, connection) => {
+    if (err) return res.send(err.message);
+    else if (connection) {
+      const sqlQuery = `SELECT company_id FROM ${tableName}`;
+      connection.query(sqlQuery, (err, result) => {
+        if (err) return res.send({ msg: err.message });
+        else if (result) {
+          return res.json(result);
+        }
+      });
+    }
+    connection.release();
+  });
+};
+
 const addNewsCompany = async (req, res) => {
   mysqlPool.getConnection((err, connection) => {
     if (err) return res.send({ msg: err.message });
