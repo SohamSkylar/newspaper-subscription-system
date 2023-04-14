@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const menus = [
-    { name: "dashboard", link: "/adminpanel/first", icon: MdOutlineDashboard },
-    { name: "user", link: "/adminpanel/second", icon: AiOutlineUser },
+    { name: "dashboard", link: "/adminpanel/partner", icon: MdOutlineDashboard },
+    { name: "user", link: "/adminpanel/paper", icon: AiOutlineUser },
     { name: "messages", link: "/adminpanel/third", icon: FiMessageSquare },
     { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
     { name: "File Manager", link: "/", icon: FiFolder },
@@ -19,6 +19,20 @@ const Sidebar = () => {
     { name: "Setting", link: "/", icon: RiSettings4Line },
   ];
   const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 900) {
+        setOpen(true);
+      } else {
+        setOpen(false);
+      }
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <section className="flex gap-6">
       <div

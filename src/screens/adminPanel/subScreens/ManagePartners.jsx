@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
 import { registerPartner } from "../../../helpers/PartnerApi";
 
-const Comp1 = () => {
+const ManagePartners = () => {
   // const [file1, setFile1] = useState("");
   // const [img1Ready, setImg1Ready] = useState(false);
 
@@ -284,4 +284,4 @@ const Comp1 = () => {
   );
 };
 
-export default Comp1;
+export default ManagePartners;

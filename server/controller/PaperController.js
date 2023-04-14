@@ -28,12 +28,10 @@ const addNewspaper = async (req, res) => {
       console.log("addNewspaper api activated");
       let company_id = req.body.company_id;
       let name = req.body.name;
-      let street = req.body.street;
       let city = req.body.city;
       let state = req.body.state;
-      let postalCode = req.body.postalCode;
 
-      const location = `${street}, ${city}, ${state}, postalcode - ${postalCode}`;
+      const location = `${city}, ${state}`;
 
       const sqlQuery = `INSERT INTO ${tableName} (company_id, name, location) VALUES(?,?,?)`;
       connection.query(
