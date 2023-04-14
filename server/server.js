@@ -47,6 +47,7 @@ const autoCreateTable = () => {
         "customer.sql",
         "newspaper.sql",
         "subscription_type.sql",
+        "subscription.sql",
         "news_subbed.sql"
       ];
       tableFiles.forEach(async (tableName) => {

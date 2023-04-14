@@ -53,7 +53,7 @@ const ManagePartners = () => {
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Sidebar />
       <div>
-        <div className="border-b border-gray-900/10 pb-12">
+        <div className="border-b border-gray-900/10 pb-12 p-14">
           <h2 className="text-2xl mt-2 font-semibold leading-7 text-gray-900">
             Partner Onboarding
           </h2>
