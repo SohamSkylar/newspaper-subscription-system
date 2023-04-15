@@ -3,9 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Contact from "./screens/contact/Contact";
 import Homepage from "./screens/homepage/Homepage";
 import AdminPanel from "./screens/adminPanel/AdminPanel";
-import Comp3 from "./screens/adminPanel/subScreens/Comp3";
 import ManagePartners from "./screens/adminPanel/subScreens/ManagePartners";
 import ManagePapers from "./screens/adminPanel/subScreens/ManagePapers";
+import ManageSubscription from "./screens/adminPanel/subScreens/ManageSubscription";
 
 
 const router = createBrowserRouter([
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
     element: <ManagePapers/>
   },
   {
-    path: "/adminpanel/third",
-    element: <Comp3/>
+    path: "/adminpanel/subscription",
+    element: <ManageSubscription/>
   }
 ]);
 

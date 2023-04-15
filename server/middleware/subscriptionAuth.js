@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const ENV = require("../config.js");
 const mysqlPool = require("../database/mysqlConnection");
 
-const SubtableName = "sublist";
+const SubtableName = "subscription_type";
 const ServertableName = "serverlist";
 const UsertableName = "user";
 
@@ -26,34 +26,20 @@ const authCustomer = async (req, res, next) => {
   }
 };
 
-const checkDuplicateSubscription = async (req, res, next) => {
+const checkDuplicateSubType = async (req, res, next) => {
   mysqlPool.getConnection((err, connection) => {
     if (err) return res.send({ msg: err.message });
     else if (connection) {
-      let subtype = req.body.subtype;
-      let duplicateSub = false;
-      new Promise(async (resolve, reject) => {
-        const existSubQuery = `SELECT COUNT(*) as existSubs FROM ${SubtableName} WHERE subtype=?`;
-        connection.query(existSubQuery, subtype, (err, result) => {
-          if (err) {
-            console.log(err.message);
-            reject(new Error(err.message));
-          } else if (result) {
-            const existSubVal = Number(result[0].existSubs.toString());
-            if (existSubVal > 0) duplicateSub = true;
-            if (duplicateSub) reject(new Error("DUPLICATE_SUB"));
-            resolve();
-          }
-        });
-      })
-        .then(() => {
-          next();
-        })
-        .catch((err) => {
-          if (err.message === "DUPLICATE_SUB")
-            res.status(201).send({ msg: "fail", detail: "DUPLICATE_SUB" });
-          else res.status(500).send(err.message);
-        });
+      let sub_name = req.body.sub_name;
+      const existSubQuery = `SELECT COUNT(*) as existSubs FROM ${SubtableName} WHERE sub_name=?`;
+      connection.query(existSubQuery, sub_name, (err, result) => {
+        if (err) return res.send({ msg: err.message });
+        else if (result) {
+          const existSubVal = Number(result[0].existSubs.toString());
+          if (existSubVal > 0) res.send({ msg: "DUPLICATE_SUB" });
+          else next();
+        }
+      });
     }
     connection.release();
   });
@@ -160,7 +146,7 @@ const getAllCustomerTables = async (req, res, next) => {
 };
 
 module.exports = {
-  checkDuplicateSubscription,
+  checkDuplicateSubType,
   checkAllFieldsServerSub,
   verifyCustomer,
   checkAllFieldsCustomer,

@@ -11,7 +11,7 @@ const Sidebar = () => {
   const menus = [
     { name: "dashboard", link: "/adminpanel/partner", icon: MdOutlineDashboard },
     { name: "user", link: "/adminpanel/paper", icon: AiOutlineUser },
-    { name: "messages", link: "/adminpanel/third", icon: FiMessageSquare },
+    { name: "messages", link: "/adminpanel/subscription", icon: FiMessageSquare },
     { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
     { name: "File Manager", link: "/", icon: FiFolder },
     { name: "Cart", link: "/", icon: FiShoppingCart },

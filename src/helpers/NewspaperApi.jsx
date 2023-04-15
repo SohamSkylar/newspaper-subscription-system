@@ -14,3 +14,12 @@ export async function addNewspaper(paperdetails) {
       return Promise.reject(error.message);
     }
   }
+
+  export async function showAllPapers() {
+    try {
+      const { data } = await axios.get(`${BASE_URL}`);
+      return Promise.resolve(data);
+    } catch (err) {
+      return Promise.reject(err.message);
+    }
+  }
