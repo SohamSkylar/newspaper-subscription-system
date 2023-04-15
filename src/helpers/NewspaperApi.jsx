@@ -23,3 +23,12 @@ export async function addNewspaper(paperdetails) {
       return Promise.reject(err.message);
     }
   }
+
+  export async function showAllPaperSub() {
+    try {
+      const { data } = await axios.get(`${BASE_URL}/sub`);
+      return Promise.resolve(data);
+    } catch (err) {
+      return Promise.reject(err.message);
+    }
+  }
