@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar.jsx";
 import NewspaperCard from "./components/NewspaperCard.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import CarouselSlider from "./components/CarouselSlider.js";
+import CarouselSlider from "./components/CarouselSlider.jsx";
 import ContactUs from "./components/ContactUs.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
