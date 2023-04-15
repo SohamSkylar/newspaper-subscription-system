@@ -11,6 +11,7 @@ const {
   addNewSubType,
   addNewPaperSub,
   showAllPaperSubs,
+  showSpecificPaperSub,
 } = require("../controller/SubscriptionController");
 const {
   checkDuplicateSubType,
@@ -26,6 +27,7 @@ const subscriptionRouter = express.Router();
 //get
 subscriptionRouter.get("/type", showAllSubType);
 subscriptionRouter.get("/paper", showAllPaperSubs);
+subscriptionRouter.get("/paper/specific/:id", showSpecificPaperSub);
 subscriptionRouter.get("/customer", showAllCustomers);
 // subscriptionRouter.get("/customer/id", getCustomerData);
 subscriptionRouter.get("/customer/auth", authCustomer, activeCustomer);

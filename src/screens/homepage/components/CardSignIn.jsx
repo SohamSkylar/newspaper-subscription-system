@@ -2,15 +2,15 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
-import { loginAdmin } from "../helpers/CustomerApi";
 import { Toaster, toast } from "react-hot-toast";
+import { loginUser } from "../../../helpers/CustomerApi";
 
-const AdminSignIn = ({ open, setOpen }) => {
+const CardSignIn = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
 
   const formik = useFormik({
     initialValues: {
-      username: "",
+      email: "",
       password: "",
     },
     validate: false,
@@ -18,21 +18,21 @@ const AdminSignIn = ({ open, setOpen }) => {
     validateOnChange: false,
     onSubmit: async (values) => {
       let toastBox = toast.loading("Loading...");
-      let loginPromise = loginAdmin(values);
+      let loginPromise = loginUser(values);
       loginPromise.then(
         (resolve) => {
           toast.success("Logged in Successfully!", {
             id: toastBox,
           });
           localStorage.setItem("token", resolve);
-            setOpen(false);
-            window.location.reload();
+          setOpen(false);
+          window.location.reload();
         },
         (msg) => {
           toast.error(`${msg}`, {
             id: toastBox,
           });
-            setOpen(false);
+          setOpen(false);
         }
       );
     },
@@ -92,10 +92,10 @@ const AdminSignIn = ({ open, setOpen }) => {
                       </div>
                       <div className="mt-8">
                         <input
-                          type="text"
-                          {...formik.getFieldProps("username")}
-                          autoComplete="username"
-                          placeholder="username"
+                          type="email"
+                          {...formik.getFieldProps("email")}
+                          autoComplete="email"
+                          placeholder="email"
                           className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                           required
                         />
@@ -136,4 +136,4 @@ const AdminSignIn = ({ open, setOpen }) => {
   );
 };
 
-export default AdminSignIn;
+export default CardSignIn;

@@ -2,37 +2,54 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
-import { loginAdmin } from "../helpers/CustomerApi";
 import { Toaster, toast } from "react-hot-toast";
+import { loginUser } from "../../../helpers/CustomerApi";
+import { showPaperSub } from "../../../helpers/SubscriptionApi";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const AdminSignIn = ({ open, setOpen }) => {
+const SubscribeModal = ({ open, setOpen, paperID }) => {
   const cancelButtonRef = useRef(null);
+
+  const [availSub, setAvailSub] = useState([]);
+
+  useEffect(() => {
+    const getAvailSubFunc = () => {
+      const getPaperSubPromise = showPaperSub(paperID);
+      getPaperSubPromise
+        .then((data) => {
+          setAvailSub(data);
+        })
+        .catch((err) => console.log(err.message));
+    };
+
+    getAvailSubFunc();
+  }, [paperID]);
 
   const formik = useFormik({
     initialValues: {
-      username: "",
-      password: "",
+      sub_id: "",
+      cust_id: "",
     },
     validate: false,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values) => {
       let toastBox = toast.loading("Loading...");
-      let loginPromise = loginAdmin(values);
+      let loginPromise = loginUser(values);
       loginPromise.then(
         (resolve) => {
           toast.success("Logged in Successfully!", {
             id: toastBox,
           });
           localStorage.setItem("token", resolve);
-            setOpen(false);
-            window.location.reload();
+          setOpen(false);
         },
         (msg) => {
           toast.error(`${msg}`, {
             id: toastBox,
           });
-            setOpen(false);
+          setOpen(false);
         }
       );
     },
@@ -83,30 +100,64 @@ const AdminSignIn = ({ open, setOpen }) => {
                         </div>
                         <div className="mt-3 text-center sm:ml-4 sm:mt-1 sm:text-left">
                           <Dialog.Title
-                            as="h1"
-                            className="text-5xl font-semibold leading-6 text-gray-900"
+                            as="h2"
+                            className="text-4xl font-semibold leading-6 text-gray-900"
                           >
-                            Sign in
+                            Get Subscription
                           </Dialog.Title>
                         </div>
                       </div>
                       <div className="mt-8">
-                        <input
-                          type="text"
-                          {...formik.getFieldProps("username")}
-                          autoComplete="username"
-                          placeholder="username"
-                          className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        <label
+                          htmlFor="sub_id"
+                          className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700"
+                        >
+                          SUB ID
+                        </label>
+                        <select
+                          {...formik.getFieldProps("sub_id")}
                           required
-                        />
-                        <input
-                          type="password"
-                          autoComplete="current-password"
-                          {...formik.getFieldProps("password")}
-                          placeholder="password"
+                          id="sub_id"
+                          name="sub_id"
+                          autoComplete="sub_id"
                           className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                          required
-                        />
+                        >
+                          <option value="">Select :</option>
+                          {availSub.map((data) => {
+                            return (
+                              <option key={data.sub_id} value={data.sub_id}>
+                                {data.sub_name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        {formik.values.sub_id !== "" &&
+                          availSub
+                            .filter(
+                              (element) =>{
+                                return formik.values.sub_id.toString() === element.sub_id.toString()
+                              }
+                                
+                            ).map((data) => {
+                              console.log(data);
+                              return (
+                                <h1
+                                  htmlFor="company_id"
+                                  className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700"
+                                >
+                                 PRICE: {data.price}
+                                </h1>
+                              );
+                            })
+                          //   <input
+                          //   type="password"
+                          //   autoComplete="current-password"
+                          //   {...formik.getFieldProps("password")}
+                          //   placeholder="password"
+                          //   className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          //   required
+                          // />
+                        }
                       </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -136,4 +187,4 @@ const AdminSignIn = ({ open, setOpen }) => {
   );
 };
 
-export default AdminSignIn;
+export default SubscribeModal;
