@@ -33,7 +33,7 @@
   margin-bottom: 0px;
   margin-left: 0px;
   line-height: 25px;
-  color: white;
+  color: #DEF2F1;
 }
 
 .contact_us_green .responsive-cell-block {
@@ -67,7 +67,7 @@
 
 .contact_us_green .text-blk.contactus-subhead {
   max-width: 385px;
-  color: #939393;
+  color: #6B6E70;
   font-size: 18px;
   margin-top: 0px;
   margin-right: 0px;
@@ -108,7 +108,7 @@
 }
 
 .contact_us_green .contact-text {
-  color: #939393;
+  color: #DEF2F1;
 }
 
 .contact_us_green .input {
@@ -176,7 +176,7 @@
 .contact_us_green .submit-btn {
   min-width: 290px;
   height: 60px;
-  background-color: slategray;
+  background-color: #2B7A78;
   font-size: 18px;
   font-weight: 700;
   color: white;
@@ -214,8 +214,8 @@
 }
 
 .contact_us_green .text-blk.input-title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 28px;
   margin-top: 0px;
   margin-right: 0px;

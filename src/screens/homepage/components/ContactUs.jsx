@@ -2,9 +2,12 @@ import React from 'react'
 import './ContactUsCSS.css'
 
 const ContactUs = () => {
+
+  const styleBg = {backgroundColor: "#17252A"}
+  const styleCol = {color: "#17252A"}
     return (
         <>
-            <div className="contact_us_green">
+            <div className="contact_us_green" style={{...styleBg}}>
   <div className="responsive-container-block big-container">
     <div className="responsive-container-block container">
       <div className="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-7 wk-ipadp-10 line" id="i69b-2">
@@ -21,31 +24,31 @@ const ContactUs = () => {
             <div className="responsive-container-block">
               <div className="responsive-cell-block wk-ipadp-6 wk-tab-12 wk-mobile-12 wk-desk-6" id="i10mt-6">
                 <p className="text-blk input-title">
-                  FIRST NAME
+                  First Name
                 </p>
                 <input className="input" id="ijowk-6" name="FirstName"/>
               </div>
               <div className="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
                 <p className="text-blk input-title">
-                  LAST NAME
+                  Last Name
                 </p>
                 <input className="input" id="indfi-4" name="Last Name"/>
               </div>
               <div className="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
                 <p className="text-blk input-title">
-                  EMAIL
+                  E-Mail
                 </p>
                 <input className="input" id="ipmgh-6" name="Email"/>
               </div>
               <div className="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
                 <p className="text-blk input-title">
-                  PHONE NUMBER
+                  Phone Number
                 </p>
                 <input className="input" id="imgis-5" name="PhoneNumber"/>
               </div>
               <div className="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i634i-6">
                 <p className="text-blk input-title">
-                  WHAT DO YOU HAVE IN MIND
+                  What do you have in mind ?
                 </p>
                 <textarea className="textinput" id="i5vyy-6" placeholder="Please enter query..."></textarea>
               </div>
