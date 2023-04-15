@@ -5,9 +5,11 @@ import { showAllPartners } from "../../../helpers/PartnerApi";
 import { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { addNewspaper } from "../../../helpers/NewspaperApi";
+import { activeUser } from "../../../helpers/CustomerApi";
 
 const ManagePapers = () => {
   const [companyNames, setCompanyNames] = useState([]);
+  const [isAdmin, setIsAdminVal] = useState(false);
 
   const getPartnerDataFunc = () => {
     const getPartnerPromise = showAllPartners();
@@ -17,6 +19,23 @@ const ManagePapers = () => {
       })
       .catch((err) => console.log(err.message));
   };
+
+  const activeUserFunc = () => {
+    const activeUserPromise = activeUser();
+    activeUserPromise
+      .then((data) => {
+        // console.log(data)
+        if (data.type === "admin") {
+          setIsAdminVal(true);
+        } else {
+          setIsAdminVal(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
 
   const formik = useFormik({
     initialValues: {
@@ -53,13 +72,16 @@ const ManagePapers = () => {
 
   useEffect(() => {
     getPartnerDataFunc();
+    activeUserFunc();
   }, []);
 
   return (
     <div className="flex">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Sidebar />
-      <div>
+      {
+        isAdmin?
+        <div>
         <div className="border-b border-gray-900/10 pb-12 p-14">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
             Newspaper Information
@@ -186,6 +208,9 @@ const ManagePapers = () => {
           </form>
         </div>
       </div>
+      :
+      <h1 className="container m-auto items-center text-center text-2xl">ACCESS DENIED!!!</h1>
+      }
     </div>
   );
 };

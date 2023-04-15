@@ -3,10 +3,30 @@ import Sidebar from "../components/Sidebar";
 import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
 import { registerPartner } from "../../../helpers/PartnerApi";
+import { useState } from "react";
+import { useEffect } from "react";
+import { activeUser } from "../../../helpers/CustomerApi";
 
 const ManagePartners = () => {
   // const [file1, setFile1] = useState("");
   // const [img1Ready, setImg1Ready] = useState(false);
+  const [isAdmin, setIsAdminVal] = useState(false);
+
+  const activeUserFunc = () => {
+    const activeUserPromise = activeUser();
+    activeUserPromise
+      .then((data) => {
+        // console.log(data)
+        if (data.type === "admin") {
+          setIsAdminVal(true);
+        } else {
+          setIsAdminVal(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -22,24 +42,30 @@ const ManagePartners = () => {
     onSubmit: async (values) => {
       let toastBox = toast.loading("Loading...");
       let registerPromise = registerPartner(values);
-      registerPromise.then(
-        () => {
-          toast.success("Added Successfully!", {
+      registerPromise
+        .then(
+          () => {
+            toast.success("Added Successfully!", {
+              id: toastBox,
+            });
+          },
+          (msg) => {
+            toast.error(`${msg}`, {
+              id: toastBox,
+            });
+          }
+        )
+        .catch((err) => {
+          toast.error(`${err}`, {
             id: toastBox,
           });
-        },
-        (msg) => {
-          toast.error(`${msg}`, {
-            id: toastBox,
-          });
-        }
-      ).catch((err) => {
-        toast.error(`${err}`, {
-          id: toastBox,
         });
-      })
     },
   });
+
+  useEffect(() => {
+    activeUserFunc();
+  }, []);
 
   // const onUploadImg1 = async (e) => {
   //   const base64 = await convertToBase64(e.target.files[0]);
@@ -52,123 +78,125 @@ const ManagePartners = () => {
     <div className="flex">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Sidebar />
-      <div>
-        <div className="border-b border-gray-900/10 pb-12 p-14">
-          <h2 className="text-2xl mt-2 font-semibold leading-7 text-gray-900">
-            Partner Onboarding
-          </h2>
-          <p className="mt-8 text-sm leading-6 text-gray-600">
-            Enter the details in the given fields.
-          </p>
-          <form onSubmit={formik.handleSubmit}>
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Company Name
-                </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+
+      {isAdmin ? (
+        <div>
+          <div className="border-b border-gray-900/10 pb-12 p-14">
+            <h2 className="text-2xl mt-2 font-semibold leading-7 text-gray-900">
+              Partner Onboarding
+            </h2>
+            <p className="mt-8 text-sm leading-6 text-gray-600">
+              Enter the details in the given fields.
+            </p>
+            <form onSubmit={formik.handleSubmit}>
+              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Company Name
+                  </label>
+                  <div className="mt-2">
+                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <input
+                        type="text"
+                        required
+                        name="name"
+                        id="name"
+                        autoComplete="name"
+                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        placeholder="Enter Company Name"
+                        {...formik.getFieldProps("name")}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="company_id"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Company ID
+                  </label>
+                  <div className="mt-2">
+                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <input
+                        type="text"
+                        required
+                        name="company_id"
+                        id="company_id"
+                        autoComplete="company_id"
+                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        placeholder="Enter Company ID"
+                        {...formik.getFieldProps("company_id")}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Email address
+                  </label>
+                  <div className="mt-2">
                     <input
-                      type="text"
+                      {...formik.getFieldProps("email")}
+                      id="email"
                       required
-                      name="name"
-                      id="name"
-                      autoComplete="name"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      placeholder="Enter Company Name"
-                      {...formik.getFieldProps("name")}
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-              </div>
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="company_id"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Company ID
-                </label>
-                <div className="mt-2">
-                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="img1"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Enter Image Link 1
+                  </label>
+                  <div className="mt-2">
                     <input
-                      type="text"
+                      {...formik.getFieldProps("img1")}
+                      id="img1"
                       required
-                      name="company_id"
-                      id="company_id"
-                      autoComplete="company_id"
-                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                      placeholder="Enter Company ID"
-                      {...formik.getFieldProps("company_id")}
+                      name="img1"
+                      type="text"
+                      autoComplete="img1"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-              </div>
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Email address
-                </label>
-                <div className="mt-2">
-                  <input
-                    {...formik.getFieldProps("email")}
-                    id="email"
-                    required
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="img2"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Enter Image Link 2 (optional)
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      {...formik.getFieldProps("img2")}
+                      id="img2"
+                      name="img2"
+                      type="text"
+                      autoComplete="img2"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="img1"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Enter Image Link 1
-                </label>
-                <div className="mt-2">
-                  <input
-                    {...formik.getFieldProps("img1")}
-                    id="img1"
-                    required
-                    name="img1"
-                    type="text"
-                    autoComplete="img1"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
+                <div className="sm:col-span-4">
+                  <button type="submit" className="mt-2 p-2 px-4">
+                    ADD
+                  </button>
                 </div>
-              </div>
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="img2"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Enter Image Link 2 (optional)
-                </label>
-                <div className="mt-2">
-                  <input
-                    {...formik.getFieldProps("img2")}
-                    id="img2"
-                    name="img2"
-                    type="text"
-                    autoComplete="img2"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div className="sm:col-span-4">
-              <button type="submit" className="mt-2 p-2 px-4">
-                ADD
-              </button>
-              </div>
-              
-              {/* <div className="col-span-full">
+
+                {/* <div className="col-span-full">
                 <label
                   for="cover-photo"
                   className="block text-sm font-medium leading-6 text-gray-900"
@@ -276,10 +304,15 @@ const ManagePartners = () => {
                 <button>SUBMIT</button>
               </div>
             </div> */}
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        <h1 className="container m-auto items-center text-center text-2xl">
+          ACCESS DENIED!!!
+        </h1>
+      )}
     </div>
   );
 };

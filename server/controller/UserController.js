@@ -109,7 +109,6 @@ const addAdmin = async (req, res) => {
     else if (connection) {
       console.log("register user api activated");
       let name = req.body.name;
-      let email = req.body.email;
       let username = req.body.username;
       let password = req.body.password;
 
@@ -117,10 +116,10 @@ const addAdmin = async (req, res) => {
         bcrypt
           .hash(password, 10)
           .then(async (hashedPassword) => {
-            const sqlQuery = `INSERT INTO admin (name, email, username, password) VALUES(?,?,?,?)`;
+            const sqlQuery = `INSERT INTO admin (name, username, password) VALUES(?,?,?)`;
             connection.query(
               sqlQuery,
-              [name, email, username, hashedPassword],
+              [name, username, hashedPassword],
               (err, result) => {
                 if (err) return res.status(500).send({ msg: err.message });
                 else if (result) {
