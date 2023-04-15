@@ -31,7 +31,7 @@ const Homepage = () => {
       <div className="max-w-full" name="homePage">
         <CarouselSlider />
       </div>
-      <div name="cardSection" className="bg-white">
+      <div name="cardSection" className="bg-white container flex-wrap flex mt-4 justify-center m-auto overflow-hidden md:justify-start">
         {paperData.map((data) => {
           return (
             <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name}/>
