@@ -101,51 +101,18 @@ const checkDuplicateCustomer = async (req, res, next) => {
 
 const checkDuplicateAdmin = async (req, res, next) => {
   mysqlPool.getConnection((err, connection) => {
-    if (err) return res.status(404).send({ error: err.message });
+    if (err) return res.status(404).send({ msg: err.message });
     else if (connection) {
-      let email = req.body.email;
       let username = req.body.username;
-      let duplicateUsername = false,
-        duplicateEmail = false;
-      const usernamePromise = new Promise(async (resolve, reject) => {
-        const existUserQuery = `SELECT COUNT(*) as existUsers FROM admin WHERE username=?`;
-        connection.query(existUserQuery, username, (err, result) => {
-          if (err) return res.send({ msg: err.message });
-          else if (result) {
-            const existUserVal = Number(result[0].existUsers.toString());
-            if (existUserVal > 0) duplicateUsername = true;
-            resolve();
-          }
-        });
-      });
-      const emailPromise = new Promise(async (resolve, reject) => {
-        const existEmailQuery = `SELECT COUNT(*) as existEmail FROM admin WHERE email=?`;
-        connection.query(existEmailQuery, email, (err, result) => {
-          if (err) return res.send({ msg: err.message });
-          else if (result) {
-            const existEmailVal = Number(result[0].existEmail.toString());
-            if (existEmailVal > 0) duplicateEmail = true;
-            resolve();
-          }
-        });
-      });
-      Promise.allSettled([usernamePromise, emailPromise])
-        .then(() => {
-          if (duplicateEmail && duplicateUsername)
-            reject(new Error("DUPLICATE_EMAIL_AND_USERNAME"));
-          else if (duplicateEmail) reject(new Error("DUPLICATE_EMAIL"));
-          else if (duplicateUsername) reject(new Error("DUPLICATE_USERNAME"));
+      const existUserQuery = `SELECT COUNT(*) as existUsers FROM admin WHERE username=?`;
+      connection.query(existUserQuery, username, (err, result) => {
+        if (err) return res.send({ msg: err.message });
+        else if (result) {
+          const existUserVal = Number(result[0].existUsers.toString());
+          if (existUserVal > 0) res.send({ msg: "DUPLICATE_USERNAME" });
           else next();
-        })
-        .catch((err) => {
-          if (err.message === "DUPLICATE_EMAIL_AND_USERNAME")
-            res.status(411).send("Email and username exists");
-          else if (err.message === "DUPLICATE_EMAIL")
-            res.status(410).send("duplicate email exists");
-          else if (err.message === "DUPLICATE_USERNAME")
-            res.status(409).send("duplicate username exists");
-          else res.status(500).send("unknown error");
-        });
+        }
+      });
     }
     connection.release();
   });
