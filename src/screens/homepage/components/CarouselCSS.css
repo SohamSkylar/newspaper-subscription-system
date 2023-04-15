@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.font-link {
+    font-family: 'Barlow', sans-serif;
+  }
 
 .carousel {
     width: 100%;
@@ -34,9 +36,10 @@
   padding: 30px;
   align-items: center;
   width: 2000px;
+  color: #DEF2F1;
+}
     
 
-}
 
     
 
