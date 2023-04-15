@@ -11,8 +11,6 @@ const Navbar = () => {
   const handleClick = () => setNav(!nav);
   const [signUpModal, setSignUpModal] = useState(false);
   const [signInModal, setSignInModal] = useState(false);
-  const [AuthTypeVal, setAuthTypeVal] = useState(false);
-  const [isAdmin, setIsAdminVal] = useState(false);
   const [renderVal, setRenderVal] = useState(false);
 
   const handleClose = () => setNav(!nav);
@@ -33,14 +31,10 @@ const Navbar = () => {
     .then((data) => {
       // console.log(data)
       if (data.type === "admin") {
-        setAuthTypeVal(true);
-        setIsAdminVal(true);
+        setRenderVal(true);
       } else if (data.type === "customer") {
-        setAuthTypeVal(true);
+        setRenderVal(true);
       }
-    })
-    .then(() => {
-      setRenderVal(true);
     })
     .catch((err) => {
       setRenderVal(false);
@@ -144,7 +138,7 @@ const Navbar = () => {
 
       <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8"}>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link onClick={handleClose} to="home" smooth={true} duration={500}>
+          <Link onClick={handleClose} to="homePage" smooth={true} duration={500}>
             Home
           </Link>
         </li>
