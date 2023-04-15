@@ -36,3 +36,12 @@ export async function addSubType(subdetails) {
       return Promise.reject(error.message);
     }
   }
+
+  export async function showPaperSub(paper_id) {
+    try {
+      const {data} = await axios.get(`${BASE_URL}/paper/specific/${paper_id}`);
+      return Promise.resolve(data);
+    } catch (err) {
+      return Promise.reject(err.message);
+    }
+  }

@@ -34,7 +34,7 @@ const Homepage = () => {
       <div name="cardSection" className="bg-white container flex-wrap flex mt-4 justify-center m-auto overflow-hidden md:justify-start">
         {paperData.map((data) => {
           return (
-            <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name}/>
+            <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name} paperID={data.paper_id}/>
           );
         })}
         

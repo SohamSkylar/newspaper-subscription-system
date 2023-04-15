@@ -5,14 +5,13 @@ import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
 import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { activeUser } from "../../../helpers/CustomerApi";
 import AdminSignIn from "../../../globalComponents/AdminSignIn";
 
 const Sidebar = () => {
   const [menuItem, setMenuItem] = useState([]);
   const [signInModal, setSignInModal] = useState(false);
-  const navigate = useNavigate();
 
   const [open, setOpen] = useState(true);
   const [isAdmin, setIsAdminVal] = useState(false);
@@ -23,9 +22,7 @@ const Sidebar = () => {
 
   const handledeleteToken = () => {
     localStorage.removeItem("token");
-    setTimeout(() => {
-      navigate("/adminpanel");
-    }, 500) 
+    window.location.reload();
   };
 
   useEffect(() => {

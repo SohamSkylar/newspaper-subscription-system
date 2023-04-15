@@ -61,6 +61,24 @@ const showAllPaperSubs = async (req, res) => {
   });
 };
 
+const showSpecificPaperSub = async (req, res) => {
+  mysqlPool.getConnection((err, connection) => {
+    if (err) return res.send({ msg: err.message });
+    else if (connection) {
+      let paper_id = req.params.id;
+      let newsqlQuery = `SELECT ${PaperSubtableName}.price, ${SubtableName}.sub_name, ${SubtableName}.sub_id FROM ${SubtableName}, ${PaperSubtableName} where ${SubtableName}.sub_id = ${PaperSubtableName}.sub_id AND paper_id=${paper_id}`;
+      // console.log(sqlQuery)
+      connection.query(newsqlQuery, (err, result) => {
+        if (err) return res.send({ msg: err.message });
+        else if (result) {
+          return res.json(result);
+        }
+      });
+    }
+    connection.release();
+  });
+};
+
 const addNewPaperSub = async (req, res) => {
   mysqlPool.getConnection((err, connection) => {
     if (err) return res.send({ msg: err.message });
@@ -73,10 +91,10 @@ const addNewPaperSub = async (req, res) => {
       const sqlQuery = `INSERT INTO ${PaperSubtableName} (sub_id, paper_id, price) VALUES(?,?,?)`;
       connection.query(sqlQuery, [sub_id, paper_id, price], (err, result) => {
         if (err) {
-          if (err.message.includes('Duplicate' || 'Duplicates')) return res.send({msg: "ALREADY_EXISTS"})
+          if (err.message.includes("Duplicate" || "Duplicates"))
+            return res.send({ msg: "ALREADY_EXISTS" });
           else return res.send({ msg: err.message });
-        }
-        else if (result) {
+        } else if (result) {
           return res.status(201).send({ msg: "success" });
         }
       });
@@ -89,4 +107,5 @@ module.exports = {
   addNewSubType,
   showAllPaperSubs,
   addNewPaperSub,
+  showSpecificPaperSub,
 };

@@ -6,6 +6,7 @@ const mysqlPool = require("../database/mysqlConnection");
 const SubtableName = "subscription_type";
 const ServertableName = "serverlist";
 const UsertableName = "user";
+const PaperSubtableName = "subscription";
 
 ///boiler
 // mysqlPool.getConnection((err, connection) => {
