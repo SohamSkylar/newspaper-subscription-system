@@ -105,6 +105,17 @@ const Navbar = () => {
                 Pricing
               </Link>
             </li>
+            <li>
+              <Link
+                to="platforms"
+                smooth={true}
+                offset={-100}
+                duration={500}
+                className="hover: cursor-pointer"
+              >
+                Status
+              </Link>
+            </li>
           </ul>
         </div>
         {renderVal ? (
