@@ -53,7 +53,7 @@ To run backend/server:
 ## Appendix
 
 - URL for Admin login: localhost:PORT/adminpanel
-For adding admin: localhost:PORT/api/user/addadmin
+- For adding admin: localhost:PORT/api/user/addadmin
 
 ## Contributors
 
