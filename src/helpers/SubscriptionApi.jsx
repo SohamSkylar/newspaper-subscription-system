@@ -62,3 +62,15 @@ export async function addSubType(subdetails) {
       return Promise.reject(error.message);
     }
   }
+
+  export async function showCustomerSub() {
+    try {
+      const userToken = await localStorage.getItem("token");
+      const {data} = await axios.get(`${BASE_URL}/customer`, {
+        headers: { Authorization: `Bearer ${userToken}` }
+      });
+      return Promise.resolve(data);
+    } catch (err) {
+      return Promise.reject(err.message);
+    }
+  }

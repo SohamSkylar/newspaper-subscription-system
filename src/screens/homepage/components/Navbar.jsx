@@ -275,10 +275,10 @@ const Navbar = () => {
       </ul>
       <SignUp open={signUpModal} setOpen={(bool) => setSignUpModal(bool)} />
       <SignIn open={signInModal} setOpen={(bool) => setSignInModal(bool)} />
-      <SubscriptionStatus
+      {renderVal && <SubscriptionStatus
         open={subStatusModal}
         setOpen={(bool) => setSubStatusModal(bool)}
-      />
+      />}
     </div>
   );
 };

@@ -2,13 +2,15 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { addCustomerSub, showPaperSub } from "../../../helpers/SubscriptionApi";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SubscribeModal = ({ open, setOpen, paperID }) => {
   const cancelButtonRef = useRef(null);
+  const navigate = useNavigate()
 
   const [availSub, setAvailSub] = useState([]);
 
@@ -43,6 +45,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
             id: toastBox,
           });
           setOpen(false);
+          navigate('/')
         },
         (msg) => {
           toast.error(`${msg}`, {
