@@ -34,25 +34,25 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
     validate: false,
     validateOnBlur: false,
     validateOnChange: false,
-    onSubmit: async (values) => {
-      let toastBox = toast.loading("Loading...");
-      let loginPromise = loginUser(values);
-      loginPromise.then(
-        (resolve) => {
-          toast.success("Logged in Successfully!", {
-            id: toastBox,
-          });
-          localStorage.setItem("token", resolve);
-          setOpen(false);
-        },
-        (msg) => {
-          toast.error(`${msg}`, {
-            id: toastBox,
-          });
-          setOpen(false);
-        }
-      );
-    },
+    // onSubmit: async (values) => {
+    //   let toastBox = toast.loading("Loading...");
+    //   let loginPromise = loginUser(values);
+    //   loginPromise.then(
+    //     (resolve) => {
+    //       toast.success("Logged in Successfully!", {
+    //         id: toastBox,
+    //       });
+    //       localStorage.setItem("token", resolve);
+    //       setOpen(false);
+    //     },
+    //     (msg) => {
+    //       toast.error(`${msg}`, {
+    //         id: toastBox,
+    //       });
+    //       setOpen(false);
+    //     }
+    //   );
+    // },
   });
 
   return (
@@ -165,7 +165,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                         type="submit"
                         className="inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 sm:ml-3 sm:w-auto border-white"
                       >
-                        Sign in
+                        Purchase
                       </button>
                       <button
                         type="button"
