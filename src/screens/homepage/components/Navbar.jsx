@@ -5,12 +5,14 @@ import { GiHamburgerMenu, GiIvoryTusks } from "react-icons/gi";
 import SignUp from "../../../globalComponents/SignUp";
 import SignIn from "../../../globalComponents/SignIn";
 import { activeUser } from "../../../helpers/CustomerApi";
+import SubscriptionStatus from "./SubscribeStatus";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const [signUpModal, setSignUpModal] = useState(false);
   const [signInModal, setSignInModal] = useState(false);
+  const [subStatusModal, setSubStatusModal] = useState(false);
   const [renderVal, setRenderVal] = useState(false);
 
   const handleClose = () => setNav(!nav);
@@ -19,6 +21,9 @@ const Navbar = () => {
   };
   const handleSignInModal = () => {
     setSignInModal(true);
+  };
+  const handleSubStatusModal = () => {
+    setSubStatusModal(true);
   };
 
   const handledeleteToken = () => {
@@ -107,7 +112,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="platforms"
+                onClick={handleSubStatusModal}
                 smooth={true}
                 offset={-100}
                 duration={500}
@@ -227,6 +232,7 @@ const Navbar = () => {
       </ul>
       <SignUp open={signUpModal} setOpen={(bool) => setSignUpModal(bool)} />
       <SignIn open={signInModal} setOpen={(bool) => setSignInModal(bool)} />
+      <SubscriptionStatus open={subStatusModal} setOpen={(bool) => setSubStatusModal(bool)} />
     </div>
   );
 };

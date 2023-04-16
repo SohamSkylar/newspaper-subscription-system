@@ -3,27 +3,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
-import { addCustomerSub, showPaperSub } from "../../../helpers/SubscriptionApi";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const SubscriptionStatus = ({ open, setOpen, paperID }) => {
+const SubscribeStatus = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
 
-  const [availSub, setAvailSub] = useState([]);
-
   useEffect(() => {
-    const getAvailSubFunc = () => {
-      const getPaperSubPromise = showPaperSub(paperID);
-      getPaperSubPromise
-        .then((data) => {
-          setAvailSub(data);
-        })
-        .catch((err) => console.log(err.message));
-    };
-
-    getAvailSubFunc();
-  }, [paperID]);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -33,25 +20,25 @@ const SubscriptionStatus = ({ open, setOpen, paperID }) => {
     validate: false,
     validateOnBlur: false,
     validateOnChange: false,
-    onSubmit: async (values) => {
-      values.paper_id = paperID;
-      let toastBox = toast.loading("Loading...");
-      let loginPromise = addCustomerSub(values);
-      loginPromise.then(
-        (resolve) => {
-          toast.success("Successfully Purchased!", {
-            id: toastBox,
-          });
-          setOpen(false);
-        },
-        (msg) => {
-          toast.error(`${msg}`, {
-            id: toastBox,
-          });
-          setOpen(false);
-        }
-      );
-    },
+    // onSubmit: async (values) => {
+    //   values.paper_id = paperID;
+    //   let toastBox = toast.loading("Loading...");
+    //   let loginPromise = addCustomerSub(values);
+    //   loginPromise.then(
+    //     (resolve) => {
+    //       toast.success("Successfully Purchased!", {
+    //         id: toastBox,
+    //       });
+    //       setOpen(false);
+    //     },
+    //     (msg) => {
+    //       toast.error(`${msg}`, {
+    //         id: toastBox,
+    //       });
+    //       setOpen(false);
+    //     }
+    //   );
+    // },
   });
 
   return (
@@ -113,50 +100,6 @@ const SubscriptionStatus = ({ open, setOpen, paperID }) => {
                         >
                           Monthly/Daily:
                         </label>
-                        <select
-                          {...formik.getFieldProps("sub_id")}
-                          required
-                          id="sub_id"
-                          name="sub_id"
-                          autoComplete="sub_id"
-                          className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        >
-                          <option value="">Select :</option>
-                          {availSub.map((data) => {
-                            return (
-                              <option key={data.sub_id} value={data.sub_id}>
-                                {data.sub_name}
-                              </option>
-                            );
-                          })}
-                        </select>
-                        {formik.values.sub_id !== "" &&
-                          availSub
-                            .filter(
-                              (element) =>{
-                                return formik.values.sub_id.toString() === element.sub_id.toString()
-                              }
-                                
-                            ).map((data) => {
-                              console.log(data);
-                              return (
-                                <h1
-                                  htmlFor="company_id"
-                                  className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto  font-semibold text-gray-700 text-3xl"
-                                >
-                                 PRICE: ₹{data.price}
-                                </h1>
-                              );
-                            })
-                          //   <input
-                          //   type="password"
-                          //   autoComplete="current-password"
-                          //   {...formik.getFieldProps("password")}
-                          //   placeholder="password"
-                          //   className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                          //   required
-                          // />
-                        }
                       </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -186,4 +129,4 @@ const SubscriptionStatus = ({ open, setOpen, paperID }) => {
   );
 };
 
-export default SubscriptionStatus;
+export default SubscribeStatus;
