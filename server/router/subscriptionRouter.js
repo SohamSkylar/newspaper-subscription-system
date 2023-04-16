@@ -12,6 +12,7 @@ const {
   addNewPaperSub,
   showAllPaperSubs,
   showSpecificPaperSub,
+  addUserSub,
 } = require("../controller/SubscriptionController");
 const {
   checkDuplicateSubType,
@@ -50,11 +51,12 @@ subscriptionRouter.post(
   checkAllFieldsServerSub,
   createCustomerTable
 );
-subscriptionRouter.post(
-  "/customer/add",
-  checkAllFieldsCustomer,
-  verifyCustomer,
-  addNewCustomer
-);
+// subscriptionRouter.post(
+//   "/customer/add",
+//   checkAllFieldsCustomer,
+//   verifyCustomer,
+//   addNewCustomer
+// );
+subscriptionRouter.post("/customer/add", authCustomer, addUserSub);
 
 module.exports = subscriptionRouter;

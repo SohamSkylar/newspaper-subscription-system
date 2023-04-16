@@ -3,6 +3,7 @@ const mysqlPool = require("../database/mysqlConnection");
 
 const SubtableName = "subscription_type";
 const PaperSubtableName = "subscription";
+const CustomerSubtableName = "news_subbed";
 
 const showAllSubType = async (req, res) => {
   mysqlPool.getConnection((err, connection) => {
@@ -102,10 +103,37 @@ const addNewPaperSub = async (req, res) => {
     connection.release();
   });
 };
+
+///////////////////USER SUB////////////////////
+const addUserSub = async (req, res) => {
+  mysqlPool.getConnection((err, connection) => {
+    if (err) return res.send({ msg: err.message });
+    else if (connection) {
+      console.log("user sub api activated");
+      let sub_id = req.body.sub_id;
+      let paper_id = req.body.paper_id;
+      let cust_id = req.user.custid;
+      console.log('exec')
+      console.log(sub_id)
+      const sqlQuery = `INSERT INTO ${CustomerSubtableName} (sub_id, paper_id, cust_id) VALUES(?,?,?)`;
+      connection.query(sqlQuery, [sub_id, paper_id, cust_id], (err, result) => {
+        if (err) {
+          if (err.message.includes("Duplicate" || "Duplicates"))
+            return res.send({ msg: "ALREADY_EXISTS" });
+          else return res.send({ msg: err.message });
+        } else if (result) {
+          return res.status(201).send({ msg: "success" });
+        }
+      });
+    }
+    connection.release();
+  });
+};
 module.exports = {
   showAllSubType,
   addNewSubType,
   showAllPaperSubs,
   addNewPaperSub,
   showSpecificPaperSub,
+  addUserSub
 };

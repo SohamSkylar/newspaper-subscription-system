@@ -26,7 +26,7 @@ const Homepage = () => {
   }, []);
 
   const styleBeige = {backgroundColor: "#FEFFFF"}
-  const styleGrey = {backgroundColor: "#323232"}
+  // const styleGrey = {backgroundColor: "#323232"}
 
   return (
     <div style={{...styleBeige}}>

@@ -45,3 +45,20 @@ export async function addSubType(subdetails) {
       return Promise.reject(err.message);
     }
   }
+
+  export async function addCustomerSub(subdetails) {
+    
+    try {
+      const userToken = await localStorage.getItem("token");
+      const {
+        data: { msg },
+      } = await axios.post(`${BASE_URL}/customer/add`, subdetails, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+  
+      if (msg === "success") return Promise.resolve();
+      else return Promise.reject(msg);
+    } catch (error) {
+      return Promise.reject(error.message);
+    }
+  }

@@ -3,8 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
-import { loginUser } from "../../../helpers/CustomerApi";
-import { showPaperSub } from "../../../helpers/SubscriptionApi";
+import { addCustomerSub, showPaperSub } from "../../../helpers/SubscriptionApi";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -29,30 +28,30 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
   const formik = useFormik({
     initialValues: {
       sub_id: "",
-      cust_id: "",
+      paper_id: "",
     },
     validate: false,
     validateOnBlur: false,
     validateOnChange: false,
-    // onSubmit: async (values) => {
-    //   let toastBox = toast.loading("Loading...");
-    //   let loginPromise = loginUser(values);
-    //   loginPromise.then(
-    //     (resolve) => {
-    //       toast.success("Logged in Successfully!", {
-    //         id: toastBox,
-    //       });
-    //       localStorage.setItem("token", resolve);
-    //       setOpen(false);
-    //     },
-    //     (msg) => {
-    //       toast.error(`${msg}`, {
-    //         id: toastBox,
-    //       });
-    //       setOpen(false);
-    //     }
-    //   );
-    // },
+    onSubmit: async (values) => {
+      values.paper_id = paperID;
+      let toastBox = toast.loading("Loading...");
+      let loginPromise = addCustomerSub(values);
+      loginPromise.then(
+        (resolve) => {
+          toast.success("Successfully Purchased!", {
+            id: toastBox,
+          });
+          setOpen(false);
+        },
+        (msg) => {
+          toast.error(`${msg}`, {
+            id: toastBox,
+          });
+          setOpen(false);
+        }
+      );
+    },
   });
 
   return (
