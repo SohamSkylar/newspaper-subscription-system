@@ -7,7 +7,7 @@ import { addCustomerSub, showPaperSub } from "../../../helpers/SubscriptionApi";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const SubscriptionStatus = ({ open, setOpen, paperID }) => {
+const SubscribeModal = ({ open, setOpen, paperID }) => {
   const cancelButtonRef = useRef(null);
 
   const [availSub, setAvailSub] = useState([]);
@@ -56,7 +56,6 @@ const SubscriptionStatus = ({ open, setOpen, paperID }) => {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -186,4 +185,4 @@ const SubscriptionStatus = ({ open, setOpen, paperID }) => {
   );
 };
 
-export default SubscriptionStatus;
+export default SubscribeModal;

@@ -46,15 +46,19 @@ const Navbar = () => {
       // console.log(err);
     });
 
-    const styleBeige = {backgroundColor: "#DEF2F1"}
-    const styleGrey = {color: "#17252A"}
-
+  const styleBeige = { backgroundColor: "#DEF2F1" };
+  const styleGrey = { color: "#17252A" };
 
   return (
-    <div className="w-screen h-[80px] z-10 fixed drop-shadow-lg" style={{...styleBeige, ...styleGrey}}>
+    <div
+      className="w-screen h-[80px] z-10 fixed drop-shadow-lg"
+      style={{ ...styleBeige, ...styleGrey }}
+    >
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex items-center">
-          <h1 className="text-3xl font-bold mr-4 sm:text-4xl font-face-bwb">PAPERPORTAL</h1>
+          <h1 className="text-3xl font-bold mr-4 sm:text-4xl font-face-bwb">
+            PAPERPORTAL
+          </h1>
           <ul className="hidden md:flex font-face-bwr">
             <li>
               <Link
@@ -110,21 +114,30 @@ const Navbar = () => {
                 Pricing
               </Link>
             </li>
-            <li>
-              <Link
+            {/* <li>
+              <button
                 onClick={handleSubStatusModal}
-                smooth={true}
+                // smooth={true}
                 offset={-100}
                 duration={500}
                 className="hover: cursor-pointer"
               >
                 Status
-              </Link>
-            </li>
+              </button>
+            </li> */}
           </ul>
         </div>
         {renderVal ? (
           <div className="hidden md:flex pr-4">
+            <button
+              onClick={handleSubStatusModal}
+              // smooth={true}
+              offset={-100}
+              duration={500}
+              className="px-8 py-3 bg-emerald-400 text-white font-face-bwr mr-4"
+            >
+              Status
+            </button>
             <button
               className="px-8 py-3 bg-slate-900 text-white font-face-bwr"
               onClick={handledeleteToken}
@@ -140,7 +153,10 @@ const Navbar = () => {
             >
               Sign In
             </button>
-            <button className="px-8 py-3 font-face-bwr" onClick={handleSignUpModal}>
+            <button
+              className="px-8 py-3 font-face-bwr"
+              onClick={handleSignUpModal}
+            >
               Sign Up
             </button>
           </div>
@@ -156,9 +172,18 @@ const Navbar = () => {
         }
       </div>
 
-      <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8 font-face-bwr"}>
+      <ul
+        className={
+          !nav ? "hidden" : "absolute bg-zinc-200 w-full px-8 font-face-bwr"
+        }
+      >
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link onClick={handleClose} to="homePage" smooth={true} duration={500}>
+          <Link
+            onClick={handleClose}
+            to="homePage"
+            smooth={true}
+            duration={500}
+          >
             Home
           </Link>
         </li>
@@ -210,6 +235,15 @@ const Navbar = () => {
         {renderVal ? (
           <div className="flex flex-col my-4">
             <button
+              onClick={handleSubStatusModal}
+              // smooth={true}
+              offset={-100}
+              duration={500}
+              className="bg-emerald-400 text-black px-8 py-3 mb-4 font-face-bwr"
+            >
+              Status
+            </button>
+            <button
               className="px-8 py-3  bg-slate-900 text-white font-face-bwr"
               onClick={handledeleteToken}
             >
@@ -224,7 +258,10 @@ const Navbar = () => {
             >
               Sign In
             </button>
-            <button className="px-8 py-3 font-face-bwr" onClick={handleSignUpModal}>
+            <button
+              className="px-8 py-3 font-face-bwr"
+              onClick={handleSignUpModal}
+            >
               Sign Up
             </button>
           </div>
@@ -232,7 +269,10 @@ const Navbar = () => {
       </ul>
       <SignUp open={signUpModal} setOpen={(bool) => setSignUpModal(bool)} />
       <SignIn open={signInModal} setOpen={(bool) => setSignInModal(bool)} />
-      <SubscriptionStatus open={subStatusModal} setOpen={(bool) => setSubStatusModal(bool)} />
+      <SubscriptionStatus
+        open={subStatusModal}
+        setOpen={(bool) => setSubStatusModal(bool)}
+      />
     </div>
   );
 };

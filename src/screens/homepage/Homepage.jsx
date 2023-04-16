@@ -8,6 +8,7 @@ import ContactUs from "./components/ContactUs.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 import { showAllPaperSub } from "../../helpers/NewspaperApi.jsx";
+import { Toaster } from "react-hot-toast";
 
 const Homepage = () => {
   const [paperData, setPaperData] = useState([]);
@@ -30,6 +31,7 @@ const Homepage = () => {
 
   return (
     <div style={{...styleBeige}}>
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Navbar />
       <div className="max-w-full" name="homePage">
         <CarouselSlider />
