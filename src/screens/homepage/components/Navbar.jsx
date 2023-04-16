@@ -14,6 +14,7 @@ const Navbar = () => {
   const [signInModal, setSignInModal] = useState(false);
   const [subStatusModal, setSubStatusModal] = useState(false);
   const [renderVal, setRenderVal] = useState(false);
+  const [renderValCust, setRenderValCust] = useState(false);
 
   const handleClose = () => setNav(!nav);
   const handleSignUpModal = () => {
@@ -39,10 +40,12 @@ const Navbar = () => {
         setRenderVal(true);
       } else if (data.type === "customer") {
         setRenderVal(true);
+        setRenderValCust(true)
       }
     })
     .catch((err) => {
       setRenderVal(false);
+      setRenderValCust(false)
       // console.log(err);
     });
 
@@ -275,7 +278,7 @@ const Navbar = () => {
       </ul>
       <SignUp open={signUpModal} setOpen={(bool) => setSignUpModal(bool)} />
       <SignIn open={signInModal} setOpen={(bool) => setSignInModal(bool)} />
-      {renderVal && <SubscriptionStatus
+      {renderValCust && <SubscriptionStatus
         open={subStatusModal}
         setOpen={(bool) => setSubStatusModal(bool)}
       />}
