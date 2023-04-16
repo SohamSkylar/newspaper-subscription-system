@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
 import { useState } from "react";
 import { useEffect } from "react";
+import SubStatus from "./SubStatus";
 
 const SubscribeStatus = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
@@ -94,12 +95,14 @@ const SubscribeStatus = ({ open, setOpen }) => {
                         </div>
                       </div>
                       <div className="mt-8">
-                        <label
+                        {/* <label
                           htmlFor="sub_id"
                           className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto text-base font-normal text-gray-700"
                         >
                           Monthly/Daily:
-                        </label>
+                        </label> */}
+                        <SubStatus/>
+                        <SubStatus/>
                       </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
