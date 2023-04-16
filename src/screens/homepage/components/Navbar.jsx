@@ -41,12 +41,16 @@ const Navbar = () => {
       // console.log(err);
     });
 
+    const styleBeige = {backgroundColor: "#DEF2F1"}
+    const styleGrey = {color: "#17252A"}
+
+
   return (
-    <div className="w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg">
+    <div className="w-screen h-[80px] z-10 fixed drop-shadow-lg" style={{...styleBeige, ...styleGrey}}>
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex items-center">
-          <h1 className="text-3xl font-bold mr-4 sm:text-4xl">PAPERPORTAL</h1>
-          <ul className="hidden md:flex">
+          <h1 className="text-3xl font-bold mr-4 sm:text-4xl font-face-bwb">PAPERPORTAL</h1>
+          <ul className="hidden md:flex font-face-bwr">
             <li>
               <Link
                 to="homePage"
@@ -106,7 +110,7 @@ const Navbar = () => {
         {renderVal ? (
           <div className="hidden md:flex pr-4">
             <button
-              className="px-8 py-3 bg-slate-900 text-white"
+              className="px-8 py-3 bg-slate-900 text-white font-face-bwr"
               onClick={handledeleteToken}
             >
               Sign out
@@ -115,12 +119,12 @@ const Navbar = () => {
         ) : (
           <div className="hidden md:flex pr-4">
             <button
-              className="border-none bg-transparent text-black mr-4"
+              className="border-none bg-transparent text-black mr-4 font-face-bwr"
               onClick={handleSignInModal}
             >
               Sign In
             </button>
-            <button className="px-8 py-3" onClick={handleSignUpModal}>
+            <button className="px-8 py-3 font-face-bwr" onClick={handleSignUpModal}>
               Sign Up
             </button>
           </div>
@@ -136,7 +140,7 @@ const Navbar = () => {
         }
       </div>
 
-      <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8"}>
+      <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8 font-face-bwr"}>
         <li className="border-b-2 border-zinc-300 w-full">
           <Link onClick={handleClose} to="homePage" smooth={true} duration={500}>
             Home
@@ -190,7 +194,7 @@ const Navbar = () => {
         {renderVal ? (
           <div className="flex flex-col my-4">
             <button
-              className="px-8 py-3  bg-slate-900 text-white"
+              className="px-8 py-3  bg-slate-900 text-white font-face-bwr"
               onClick={handledeleteToken}
             >
               Sign out
@@ -199,12 +203,12 @@ const Navbar = () => {
         ) : (
           <div className="flex flex-col my-4">
             <button
-              className="bg-transparent text-indigo-600 px-8 py-3 mb-4"
+              className="bg-transparent text-black px-8 py-3 mb-4 font-face-bwr"
               onClick={handleSignInModal}
             >
               Sign In
             </button>
-            <button className="px-8 py-3" onClick={handleSignUpModal}>
+            <button className="px-8 py-3 font-face-bwr" onClick={handleSignUpModal}>
               Sign Up
             </button>
           </div>

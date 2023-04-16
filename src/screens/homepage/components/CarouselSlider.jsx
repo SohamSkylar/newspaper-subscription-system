@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { showAllPartners } from "../../../helpers/PartnerApi";
 
+
 const CarouselSlider = () =>{
 
   const [partnerData, setPartnerData] = useState([]);
@@ -35,13 +36,13 @@ const CarouselSlider = () =>{
   }, [])
 
   return (
-    <div>
+    <div className="font-face-bwb">
       <Slider {...settings}>
         {partnerData.map((data) =>{
           return <div key={data.company_id} className="carousel">
             <img key={data.company_id} src = {data.img1} alt="newspaperImage" className="carouselInner"></img>
-            <div className="carDiv bg-black/10">
-              <div key={data.company_id} className="carText flex flex-wrap text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-semibold">{data.name}</div>
+            <div className="carDiv bg-black/30">
+              <div key={data.company_id} className="carText flex flex-wrap text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-bold">{data.name}</div>
             </div>
           </div>
         })}
