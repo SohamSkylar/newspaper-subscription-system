@@ -131,12 +131,11 @@ const ManageSubscription = () => {
       {isAdmin ? (
         <div>
           <div class="border-b border-gray-900/10 pb-12 p-14">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">
+            <h2 class="text-2xl font-semibold leading-7 text-gray-900">
               Subscription Type
             </h2>
             <p class="mt-1 text-sm leading-6 text-gray-600">
-              We'll always let you know about important changes, but you pick
-              what else you want to hear about.
+              Add Subscription Type and duration.
             </p>
             <form onSubmit={subTypeFormik.handleSubmit}>
               <div class="mt-10 space-y-10">
@@ -189,12 +188,11 @@ const ManageSubscription = () => {
             </form>
           </div>
           <div class="border-b border-gray-900/10 pb-12 p-14">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">
-              Subscription
+            <h2 class="text-2xl font-semibold leading-7 text-gray-900">
+              Pricing
             </h2>
             <p class="mt-1 text-sm leading-6 text-gray-600">
-              We'll always let you know about important changes, but you pick
-              what else you want to hear about.
+              Add pricing for Newspapers.
             </p>
 
             <form onSubmit={paperSubFormik.handleSubmit}>

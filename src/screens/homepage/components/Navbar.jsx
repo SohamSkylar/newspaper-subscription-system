@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
-
+import { ImNewspaper } from "react-icons/im";
 import { GiHamburgerMenu, GiIvoryTusks } from "react-icons/gi";
 import SignUp from "../../../globalComponents/SignUp";
 import SignIn from "../../../globalComponents/SignIn";
@@ -55,7 +55,13 @@ const Navbar = () => {
       style={{ ...styleBeige, ...styleGrey }}
     >
       <div className="px-2 flex justify-between items-center w-full h-full">
-        <div className="flex items-center">
+        <div className="flex items-center space-x-2">
+          <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center sm:mx-0 sm:h-10 sm:w-10">
+            <ImNewspaper
+              className="h-8 w-8 text-black"
+              aria-hidden="true"
+            />
+          </div>
           <h1 className="text-3xl font-bold mr-4 sm:text-4xl font-face-bwb">
             PAPERPORTAL
           </h1>

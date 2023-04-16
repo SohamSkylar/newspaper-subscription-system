@@ -1,6 +1,6 @@
 import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ImUserPlus } from "react-icons/im";
+import { ImClock } from "react-icons/im";
 import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
 import { useState } from "react";
@@ -80,7 +80,7 @@ const SubscribeStatus = ({ open, setOpen }) => {
                     <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                       <div className="sm:flex sm:items-start">
                         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                          <ImUserPlus
+                          <ImClock
                             className="h-6 w-6 text-black"
                             aria-hidden="true"
                           />
@@ -90,7 +90,7 @@ const SubscribeStatus = ({ open, setOpen }) => {
                             as="h2"
                             className="text-4xl font-semibold leading-6 text-gray-900"
                           >
-                            Select Subscription Type
+                            Subscription Status
                           </Dialog.Title>
                         </div>
                       </div>
