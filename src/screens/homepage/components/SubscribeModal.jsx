@@ -103,16 +103,16 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                             as="h2"
                             className="text-4xl font-semibold leading-6 text-gray-900"
                           >
-                            Get Subscription
+                            Select Subscription Type
                           </Dialog.Title>
                         </div>
                       </div>
                       <div className="mt-8">
                         <label
                           htmlFor="sub_id"
-                          className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700"
+                          className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto text-base font-normal text-gray-700"
                         >
-                          SUB ID
+                          Monthly/Daily:
                         </label>
                         <select
                           {...formik.getFieldProps("sub_id")}
@@ -120,7 +120,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                           id="sub_id"
                           name="sub_id"
                           autoComplete="sub_id"
-                          className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         >
                           <option value="">Select :</option>
                           {availSub.map((data) => {
@@ -143,9 +143,9 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                               return (
                                 <h1
                                   htmlFor="company_id"
-                                  className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700"
+                                  className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto  font-semibold text-gray-700 text-3xl"
                                 >
-                                 PRICE: {data.price}
+                                 PRICE: ₹{data.price}
                                 </h1>
                               );
                             })

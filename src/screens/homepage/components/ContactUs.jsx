@@ -7,7 +7,7 @@ const ContactUs = () => {
   const styleCol = {color: "#17252A"}
     return (
         <>
-            <div className="contact_us_green" style={{...styleBg}}>
+            <div className="contact_us_green" >
   <div className="responsive-container-block big-container">
     <div className="responsive-container-block container">
       <div className="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-7 wk-ipadp-10 line" id="i69b-2">
