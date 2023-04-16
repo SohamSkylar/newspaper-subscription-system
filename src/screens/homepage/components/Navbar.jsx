@@ -106,10 +106,10 @@ const Navbar = () => {
                 duration={500}
                 className="hover: cursor-pointer"
               >
-                Platforms
+                Language
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="pricing"
                 smooth={true}
@@ -119,7 +119,7 @@ const Navbar = () => {
               >
                 Pricing
               </Link>
-            </li>
+            </li> */}
             {/* <li>
               <button
                 onClick={handleSubStatusModal}
