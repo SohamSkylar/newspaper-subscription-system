@@ -8,6 +8,7 @@ import ContactUs from "./components/ContactUs.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 import { showAllPaperSub } from "../../helpers/NewspaperApi.jsx";
+import { Toaster } from "react-hot-toast";
 
 const Homepage = () => {
   const [paperData, setPaperData] = useState([]);
@@ -26,15 +27,16 @@ const Homepage = () => {
   }, []);
 
   const styleBeige = {backgroundColor: "#FEFFFF"}
-  const styleGrey = {backgroundColor: "#323232"}
+  // const styleGrey = {backgroundColor: "#323232"}
 
   return (
     <div style={{...styleBeige}}>
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Navbar />
       <div className="max-w-full" name="homePage">
         <CarouselSlider />
       </div>
-      <div name="cardSection" className="container flex-wrap flex mt-4 justify-center m-auto overflow-hidden md:justify-start">
+      <div name="cardSection" className="container flex-wrap flex mt-4 justify-center m-auto overflow-hidden md:justify-evenly">
         {paperData.map((data) => {
           return (
             <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name} paperID={data.paper_id}/>

@@ -34,6 +34,7 @@ const NewspaperCard = ({ paperName, paperImage, paperID }) => {
       <div className="flex">
         <div className="card">
           <img src={paperImage} className="card-img" alt="" />
+          <h1 className="card-titleBase .one-word-per-line p-4">{paperName}</h1>
           <div className="card-body">
             <h1 className="card-title">{paperName}</h1>
             <p className="card-info">

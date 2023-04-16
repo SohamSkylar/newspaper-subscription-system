@@ -12,6 +12,8 @@ const {
   addNewPaperSub,
   showAllPaperSubs,
   showSpecificPaperSub,
+  addUserSub,
+  showCustomerSub,
 } = require("../controller/SubscriptionController");
 const {
   checkDuplicateSubType,
@@ -28,19 +30,19 @@ const subscriptionRouter = express.Router();
 subscriptionRouter.get("/type", showAllSubType);
 subscriptionRouter.get("/paper", showAllPaperSubs);
 subscriptionRouter.get("/paper/specific/:id", showSpecificPaperSub);
-subscriptionRouter.get("/customer", showAllCustomers);
+subscriptionRouter.get("/customer", authCustomer, showCustomerSub);
 // subscriptionRouter.get("/customer/id", getCustomerData);
 subscriptionRouter.get("/customer/auth", authCustomer, activeCustomer);
-subscriptionRouter.get(
-  "/customer/id/:userid",
-  getAllCustomerTables,
-  getCustomerData
-);
-subscriptionRouter.get(
-  "/customer/username/:username",
-  getAllCustomerTables,
-  getCustomerData
-);
+// subscriptionRouter.get(
+//   "/customer/id/:userid",
+//   getAllCustomerTables,
+//   getCustomerData
+// );
+// subscriptionRouter.get(
+//   "/customer/username/:username",
+//   getAllCustomerTables,
+//   getCustomerData
+// );
 
 //post
 subscriptionRouter.post("/type/add", checkDuplicateSubType, addNewSubType);
@@ -50,11 +52,12 @@ subscriptionRouter.post(
   checkAllFieldsServerSub,
   createCustomerTable
 );
-subscriptionRouter.post(
-  "/customer/add",
-  checkAllFieldsCustomer,
-  verifyCustomer,
-  addNewCustomer
-);
+// subscriptionRouter.post(
+//   "/customer/add",
+//   checkAllFieldsCustomer,
+//   verifyCustomer,
+//   addNewCustomer
+// );
+subscriptionRouter.post("/customer/add", authCustomer, addUserSub);
 
 module.exports = subscriptionRouter;

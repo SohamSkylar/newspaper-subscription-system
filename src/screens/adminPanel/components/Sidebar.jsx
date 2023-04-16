@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
-import { TbReportAnalytics } from "react-icons/tb";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
+import { FiCheckSquare,FiArchive, FiHome } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { activeUser } from "../../../helpers/CustomerApi";
 import AdminSignIn from "../../../globalComponents/AdminSignIn";
@@ -27,22 +25,23 @@ const Sidebar = () => {
 
   useEffect(() => {
     const adminMenu = [
+      { name: "Home", link: "/", icon: FiHome, margin: true },
       {
-        name: "dashboard",
+        name: "Partners",
         link: "/adminpanel/partner",
         icon: MdOutlineDashboard,
       },
-      { name: "user", link: "/adminpanel/paper", icon: AiOutlineUser },
+      { name: "Newspaper Info", link: "/adminpanel/paper", icon: FiArchive },
       {
-        name: "messages",
+        name: "Subscriptions",
         link: "/adminpanel/subscription",
-        icon: FiMessageSquare,
+        icon: FiCheckSquare,
       },
-      { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
-      { name: "File Manager", link: "/", icon: FiFolder },
-      { name: "Cart", link: "/", icon: FiShoppingCart },
-      { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
-      { name: "Setting", link: "/", icon: RiSettings4Line }
+      
+      // { name: "File Manager", link: "/", icon: FiFolder },
+      // { name: "Cart", link: "/", icon: FiShoppingCart },
+      // { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
+      // { name: "Setting", link: "/", icon: RiSettings4Line }
     ];
 
     const nonAdminMenu = [{ name: "Sign in", icon: RiSettings4Line }];

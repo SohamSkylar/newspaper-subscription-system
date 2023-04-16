@@ -83,7 +83,7 @@ const ManagePapers = () => {
         isAdmin?
         <div>
         <div className="border-b border-gray-900/10 pb-12 p-14">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">
+          <h2 className="text-2xl font-semibold leading-7 text-gray-900">
             Newspaper Information
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -107,7 +107,7 @@ const ManagePapers = () => {
                     name="name"
                     id="name"
                     autoComplete="name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   />
                 </div>    
               </div>
@@ -175,7 +175,7 @@ const ManagePapers = () => {
                     name="city"
                     id="city"
                     autoComplete="city"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -195,7 +195,7 @@ const ManagePapers = () => {
                     name="state"
                     id="state"
                     autoComplete="state"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>

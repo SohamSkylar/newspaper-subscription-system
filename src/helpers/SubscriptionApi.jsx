@@ -45,3 +45,32 @@ export async function addSubType(subdetails) {
       return Promise.reject(err.message);
     }
   }
+
+  export async function addCustomerSub(subdetails) {
+    
+    try {
+      const userToken = await localStorage.getItem("token");
+      const {
+        data: { msg },
+      } = await axios.post(`${BASE_URL}/customer/add`, subdetails, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+  
+      if (msg === "success") return Promise.resolve();
+      else return Promise.reject(msg);
+    } catch (error) {
+      return Promise.reject(error.message);
+    }
+  }
+
+  export async function showCustomerSub() {
+    try {
+      const userToken = await localStorage.getItem("token");
+      const {data} = await axios.get(`${BASE_URL}/customer`, {
+        headers: { Authorization: `Bearer ${userToken}` }
+      });
+      return Promise.resolve(data);
+    } catch (err) {
+      return Promise.reject(err.message);
+    }
+  }

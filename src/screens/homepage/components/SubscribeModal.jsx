@@ -2,14 +2,15 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
-import { Toaster, toast } from "react-hot-toast";
-import { loginUser } from "../../../helpers/CustomerApi";
-import { showPaperSub } from "../../../helpers/SubscriptionApi";
+import { toast } from "react-hot-toast";
+import { addCustomerSub, showPaperSub } from "../../../helpers/SubscriptionApi";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SubscribeModal = ({ open, setOpen, paperID }) => {
   const cancelButtonRef = useRef(null);
+  const navigate = useNavigate()
 
   const [availSub, setAvailSub] = useState([]);
 
@@ -29,35 +30,35 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
   const formik = useFormik({
     initialValues: {
       sub_id: "",
-      cust_id: "",
+      paper_id: "",
     },
     validate: false,
     validateOnBlur: false,
     validateOnChange: false,
-    // onSubmit: async (values) => {
-    //   let toastBox = toast.loading("Loading...");
-    //   let loginPromise = loginUser(values);
-    //   loginPromise.then(
-    //     (resolve) => {
-    //       toast.success("Logged in Successfully!", {
-    //         id: toastBox,
-    //       });
-    //       localStorage.setItem("token", resolve);
-    //       setOpen(false);
-    //     },
-    //     (msg) => {
-    //       toast.error(`${msg}`, {
-    //         id: toastBox,
-    //       });
-    //       setOpen(false);
-    //     }
-    //   );
-    // },
+    onSubmit: async (values) => {
+      values.paper_id = paperID;
+      let toastBox = toast.loading("Loading...");
+      let loginPromise = addCustomerSub(values);
+      loginPromise.then(
+        (resolve) => {
+          toast.success("Successfully Purchased!", {
+            id: toastBox,
+          });
+          setOpen(false);
+          navigate('/')
+        },
+        (msg) => {
+          toast.error(`${msg}`, {
+            id: toastBox,
+          });
+          setOpen(false);
+        }
+      );
+    },
   });
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -103,16 +104,16 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                             as="h2"
                             className="text-4xl font-semibold leading-6 text-gray-900"
                           >
-                            Get Subscription
+                            Select Subscription Type
                           </Dialog.Title>
                         </div>
                       </div>
                       <div className="mt-8">
                         <label
                           htmlFor="sub_id"
-                          className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700"
+                          className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto text-base font-normal text-gray-700"
                         >
-                          SUB ID
+                          Monthly/Daily:
                         </label>
                         <select
                           {...formik.getFieldProps("sub_id")}
@@ -120,7 +121,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                           id="sub_id"
                           name="sub_id"
                           autoComplete="sub_id"
-                          className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                          className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         >
                           <option value="">Select :</option>
                           {availSub.map((data) => {
@@ -143,9 +144,9 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                               return (
                                 <h1
                                   htmlFor="company_id"
-                                  className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700"
+                                  className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto  font-semibold text-gray-700 text-3xl"
                                 >
-                                 PRICE: {data.price}
+                                 PRICE: ₹{data.price}
                                 </h1>
                               );
                             })
