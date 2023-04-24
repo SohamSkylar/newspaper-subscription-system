@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/newspaper-subscription-system/static/css/main.69f89329.css",
-    "main.js": "/newspaper-subscription-system/static/js/main.a55661ad.js",
+    "main.js": "/newspaper-subscription-system/static/js/main.93f017e5.js",
     "static/js/787.2912d461.chunk.js": "/newspaper-subscription-system/static/js/787.2912d461.chunk.js",
     "static/media/Barlow-Bold.ttf": "/newspaper-subscription-system/static/media/Barlow-Bold.0cb1ab864072bf9e0991.ttf",
     "static/media/Barlow-Regular.ttf": "/newspaper-subscription-system/static/media/Barlow-Regular.e7eb634d040a6f384033.ttf",
@@ -13,11 +13,11 @@
     "static/media/slick.woff": "/newspaper-subscription-system/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/newspaper-subscription-system/index.html",
     "main.69f89329.css.map": "/newspaper-subscription-system/static/css/main.69f89329.css.map",
-    "main.a55661ad.js.map": "/newspaper-subscription-system/static/js/main.a55661ad.js.map",
+    "main.93f017e5.js.map": "/newspaper-subscription-system/static/js/main.93f017e5.js.map",
     "787.2912d461.chunk.js.map": "/newspaper-subscription-system/static/js/787.2912d461.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.69f89329.css",
-    "static/js/main.a55661ad.js"
+    "static/js/main.93f017e5.js"
   ]
 }
