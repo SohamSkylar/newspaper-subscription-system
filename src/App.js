@@ -10,27 +10,27 @@ import ManageSubscription from "./screens/adminPanel/subScreens/ManageSubscripti
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/newspaper-subscription-system",
     element: <Homepage/>,
   },
   {
-    path: "/contact",
+    path: "/newspaper-subscription-system/contact",
     element: <Contact/>
   },
   {
-    path: "/adminpanel/",
+    path: "/newspaper-subscription-system/adminpanel/",
     element: <AdminPanel/>
   },
   {
-    path: "/adminpanel/partner",
+    path: "/newspaper-subscription-system/adminpanel/partner",
     element: <ManagePartners/>
   },
   {
-    path: "/adminpanel/paper",
+    path: "/newspaper-subscription-system/adminpanel/paper",
     element: <ManagePapers/>
   },
   {
-    path: "/adminpanel/subscription",
+    path: "/newspaper-subscription-system/adminpanel/subscription",
     element: <ManageSubscription/>
   }
 ]);

@@ -25,16 +25,16 @@ const Sidebar = () => {
 
   useEffect(() => {
     const adminMenu = [
-      { name: "Home", link: "/", icon: FiHome, margin: true },
+      { name: "Home", link: "/newspaper-subscription-system", icon: FiHome, margin: true },
       {
         name: "Partners",
-        link: "/adminpanel/partner",
+        link: "/newspaper-subscription-system/adminpanel/partner",
         icon: MdOutlineDashboard,
       },
-      { name: "Newspaper Info", link: "/adminpanel/paper", icon: FiArchive },
+      { name: "Newspaper Info", link: "/newspaper-subscription-system/adminpanel/paper", icon: FiArchive },
       {
         name: "Subscriptions",
-        link: "/adminpanel/subscription",
+        link: "/newspaper-subscription-system/adminpanel/subscription",
         icon: FiCheckSquare,
       },
       
