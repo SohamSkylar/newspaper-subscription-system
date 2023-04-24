@@ -45,7 +45,6 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
             id: toastBox,
           });
           setOpen(false);
-          navigate('/')
         },
         (msg) => {
           toast.error(`${msg}`, {

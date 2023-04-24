@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8001/api/subs";
+const BASE_URL = "https://newspaper-api-1.onrender.com/api/subs";
 
 export async function addSubType(subdetails) {
     try {

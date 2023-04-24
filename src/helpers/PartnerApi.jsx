@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8001/api/partner";
+const BASE_URL = "https://newspaper-api-1.onrender.com/api/partner";
 
 export async function registerPartner(partnerdetails) {
   try {
