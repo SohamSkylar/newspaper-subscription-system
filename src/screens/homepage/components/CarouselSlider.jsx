@@ -6,18 +6,7 @@ import Slider from "react-slick";
 import { showAllPartners } from "../../../helpers/PartnerApi";
 
 
-const CarouselSlider = () =>{
-
-  const [partnerData, setPartnerData] = useState([]);
-
-  const getPartnerDataFunc = () => {
-    const getPartnerPromise = showAllPartners();
-    getPartnerPromise
-      .then((data) => {
-        setPartnerData(data);
-      })
-      .catch((err) => console.log(err.message));
-  };
+const CarouselSlider = ({partnerData}) =>{
 
   const settings = {
     dots: false,
@@ -30,10 +19,6 @@ const CarouselSlider = () =>{
     speed: 3000,
     arrows: false
   };
-
-  useEffect(() => {
-    getPartnerDataFunc()
-  }, [])
 
   return (
     <div className="font-face-bwb">
