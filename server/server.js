@@ -10,7 +10,7 @@ const subscriptionRouter = require("./router/subscriptionRouter");
 const mysqlPool = require("./database/mysqlConnection");
 const paperRouter = require("./router/paperRouter");
 
-const PORT = process.env.PORT;
+const PORT = 8001;
 
 const app = express();
 
