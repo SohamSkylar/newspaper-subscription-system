@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://newspaper-api-1.onrender.com/api/user";
+const BASE_URL = "https://lazy-gray-cocoon-wrap.cyclic.app/api/user";
 
 export async function registerUser(userdetails) {
   try {
