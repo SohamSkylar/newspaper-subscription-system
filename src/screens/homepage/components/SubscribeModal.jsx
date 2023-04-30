@@ -101,7 +101,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                         <div className="mt-3 text-center sm:ml-4 sm:mt-1 sm:text-left">
                           <Dialog.Title
                             as="h2"
-                            className="text-4xl font-semibold leading-6 text-gray-900"
+                            className="text-xl md:text-4xl font-semibold leading-6 text-gray-900"
                           >
                             Select Subscription Type
                           </Dialog.Title>

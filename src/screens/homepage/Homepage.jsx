@@ -9,9 +9,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { showAllPaperSub } from "../../helpers/NewspaperApi.jsx";
 import { Toaster } from "react-hot-toast";
+import { Dots, Waves,Spinner } from 'loading-animations-react';
 
 const Homepage = () => {
   const [paperData, setPaperData] = useState([]);
+  const [dummypaperData, setdummypaperData] = useState([]);
 
   const getPartnerDataFunc = () => {
     const getPartnerPromise = showAllPaperSub();
@@ -30,7 +32,16 @@ const Homepage = () => {
   // const styleGrey = {backgroundColor: "#323232"}
 
   return (
-    <div style={{...styleBeige}}>
+    <>
+    {(paperData.length === 0) && (
+      <div className="m-auto flex h-screen items-center">
+        {/* <Waves className="componentClass" text=""/> */}
+        <Spinner color1="blue" color2="#fff" textColor="rgba(0,0,0, 0.5)" className="componentClass" />
+      </div>
+    
+    )}
+    {(paperData.length === 0) && console.log(paperData.length)}
+    {(paperData.length !== 0) && <div style={{...styleBeige}}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Navbar />
       <div className="max-w-full" name="homePage">
@@ -47,7 +58,8 @@ const Homepage = () => {
       <div name="contactUs" className="bg-black">
         <ContactUs />
       </div>
-    </div>
+    </div>}
+    </>
   );
 };
 

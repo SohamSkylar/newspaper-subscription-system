@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://newspaper-api-1.onrender.com/api/paper";
+const BASE_URL = "https://lazy-gray-cocoon-wrap.cyclic.app/api/paper";
 
 export async function addNewspaper(paperdetails) {
     try {

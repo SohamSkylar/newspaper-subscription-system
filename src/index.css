@@ -37,3 +37,8 @@
     src: local("BarlowRegular"),
       url("./fonts/Barlow-Regular.ttf") format("truetype");
     }
+
+.componentClass{
+  width: 8%;
+  margin: auto;
+}
