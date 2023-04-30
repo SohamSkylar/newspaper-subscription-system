@@ -80,9 +80,9 @@ const SubscribeStatus = ({ open, setOpen }) => {
                         >
                           Monthly/Daily:
                         </label> */}
-                      {custSub.map((data) => {
+                      {custSub.map((data, index) => {
                         return (
-                          <SubStatus
+                          <SubStatus key={index}
                             paperName={data.name}
                             duration={data.sub_name}
                           />

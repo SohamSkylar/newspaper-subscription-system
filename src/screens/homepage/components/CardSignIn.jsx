@@ -4,9 +4,17 @@ import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
 import { loginUser } from "../../../helpers/CustomerApi";
+import SignUp from "../../../globalComponents/SignUp";
+import { useState } from "react";
 
 const CardSignIn = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
+  const [signUpModal, setSignUpModal] = useState(false);
+
+  const handleSignUpModal = () => {
+    setOpen(false);
+    setSignUpModal(true);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -107,6 +115,12 @@ const CardSignIn = ({ open, setOpen }) => {
                           className="block w-5/6 px-3 py-1.5 mt-3 text-center mx-auto text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                           required
                         />
+                        <div className="w-full mt-3 mx-auto text-end text-base font-medium text-gray-600">
+                        Not Registered?
+                          <button type="button" onClick={handleSignUpModal} className="hover:cursor-pointer mr-10 text-base font-medium text-green-700 ml-1 border-none">
+                           Register now
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -132,6 +146,7 @@ const CardSignIn = ({ open, setOpen }) => {
           </div>
         </Dialog>
       </Transition.Root>
+      <SignUp open={signUpModal} setOpen={(bool) => setSignUpModal(bool)} />
     </>
   );
 };
