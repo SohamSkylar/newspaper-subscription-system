@@ -29,7 +29,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
   const formik = useFormik({
     initialValues: {
       sub_id: "",
-      paper_id: ""
+      paper_id: "",
     },
     validate: false,
     validateOnBlur: false,
@@ -130,24 +130,26 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                             );
                           })}
                         </select>
-                        {formik.values.sub_id !== "" &&
-                          availSub
-                            .filter(
-                              (element) =>{
-                                return formik.values.sub_id.toString() === element.sub_id.toString()
-                              }
-                                
-                            ).map((data, index) => {
-                              return (
-                                <h1
-                                  key={index}
-                                  htmlFor="price"
-                                  className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto  font-semibold text-gray-700 text-3xl"
-                                >
-                                 PRICE: ₹{data.price}
-                                </h1>
-                              );
-                            })
+                        {
+                          formik.values.sub_id !== "" &&
+                            availSub
+                              .filter((element) => {
+                                return (
+                                  formik.values.sub_id.toString() ===
+                                  element.sub_id.toString()
+                                );
+                              })
+                              .map((data, index) => {
+                                return (
+                                  <h1
+                                    key={index}
+                                    htmlFor="price"
+                                    className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto  font-semibold text-gray-700 text-3xl"
+                                  >
+                                    PRICE: ₹{data.price}
+                                  </h1>
+                                );
+                              })
                           //   <input
                           //   type="password"
                           //   autoComplete="current-password"
@@ -166,7 +168,17 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                       >
                         Purchase
                       </button> */}
-                      {formik.values.sub_id !== "" && <StripeGateway sub_id={formik.values.sub_id} paperDetails={availSub} paperID={paperID}/>}
+                      {formik.values.sub_id !== "" && (
+                        <div onClick={() => {
+                          setOpen(false);
+                        }}>
+                          <StripeGateway
+                            sub_id={formik.values.sub_id}
+                            paperDetails={availSub}
+                            paperID={paperID}
+                          />
+                        </div>
+                      )}
                       <button
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto border-white"
