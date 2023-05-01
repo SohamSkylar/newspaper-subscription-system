@@ -1,5 +1,5 @@
 const express = require("express");
-const { UUIDV4 } = require("sequelize");
+const { uuid } = require('uuidv4');
 const stripe = require("stripe")("sk_test_51MhcS0SEQsEMOguBR6ICyqGYVurDG0Fy3gEIaRs1em8WPYSUtnfZO4WGORZe9qQod4JuboIRLeB4ukiPfiFGJawA00QXFRmHjj");
 
 const paymentRouter = express.Router();
@@ -12,18 +12,36 @@ paymentRouter.post("/create-payment-intent", async (req, res) => {
         email:email,
         source:token
       });
-      const payment = await stripe.charges.create({
+      const payment = await stripe.paymentIntents.create({
         amount: amount * 100,
-        currency: 'USD',
+        currency: 'INR',
         customer:customer.id,
         receipt_email:email
       },{
-        idempotencyKey: UUIDV4()
+        idempotencyKey: uuid()
       })
       if(payment){
-        res.send('Payment Success')
+        mysqlPool.getConnection((err, connection) => {
+          if (err) return res.send({ msg: err.message });
+          else if (connection) {
+            console.log("user sub api activated");
+            console.log('exec')
+            console.log(sub_id)
+            const sqlQuery = `INSERT INTO ${CustomerSubtableName} (sub_id, paper_id, cust_id) VALUES(?,?,?)`;
+            connection.query(sqlQuery, [sub_id, paper_id, cust_id], (err, result) => {
+              if (err) {
+                if (err.message.includes("Duplicate" || "Duplicates"))
+                  return res.send({ msg: "ALREADY_EXISTS" });
+                else return res.send({ msg: err.message });
+              } else if (result) {
+                return res.status(201).send({ msg: "success" });
+              }
+            });
+          }
+          connection.release();
+        });
       }else{
-        res.send('Payment Failed')
+        res.send({ msg: "PAYMENT_FAILED" })
       }
     } catch (e) {
       return res.status(400).send({

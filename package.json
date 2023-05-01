@@ -30,6 +30,7 @@
     "slick-carousel": "^1.8.1",
     "steamcommunity": "^3.44.3",
     "stripe": "^12.3.0",
+    "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
