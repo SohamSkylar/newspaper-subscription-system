@@ -6,7 +6,8 @@ const paymentRouter = express.Router();
 
 paymentRouter.post("/create-payment-intent", async (req, res) => {
     
-  const {token, amount,email, sub_id, paper_id, cust_id} = req.body;
+  const {token, amount, email, sub_id, paper_id, cust_id} = req.body;
+  console.log(req.body)
   try {
       const customer = await stripe.customers.create({
         email:email,
@@ -43,12 +44,8 @@ paymentRouter.post("/create-payment-intent", async (req, res) => {
       }else{
         res.send({ msg: "PAYMENT_FAILED" })
       }
-    } catch (e) {
-      return res.status(400).send({
-        error: {
-          message: e.message,
-        },
-      });
+    } catch (err) {
+      return res.send({msg: err.message});
     }
   });
 
