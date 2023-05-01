@@ -1,22 +1,30 @@
 const express = require("express");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2022-08-01",
-  });
+const { UUIDV4 } = require("sequelize");
+const stripe = require("stripe")("sk_test_51MhcS0SEQsEMOguBR6ICyqGYVurDG0Fy3gEIaRs1em8WPYSUtnfZO4WGORZe9qQod4JuboIRLeB4ukiPfiFGJawA00QXFRmHjj");
 
 const paymentRouter = express.Router();
 
 paymentRouter.post("/create-payment-intent", async (req, res) => {
-    try {
-      const paymentIntent = await stripe.paymentIntents.create({
-        currency: "INR",
-        amount: 1999,
-        automatic_payment_methods: { enabled: true },
+    
+  const {token, amount, sub_id, paper_id, cust_id} = req.body;
+  try {
+      const customer = await stripe.customer.create({
+        email:token.email,
+        source:token.d
       });
-  
-      // Send publishable key and PaymentIntent details to client
-      res.send({
-        clientSecret: paymentIntent.client_secret,
-      });
+      const payment = await stripe.charges.create({
+        amount: amount * 100,
+        currency: 'INR',
+        customer:customer.id,
+        receipt_email:token.email
+      },{
+        idempotencyKey: UUIDV4()
+      })
+      if(payment){
+        res.send('Payment Success')
+      }else{
+        res.send('Payment Failed')
+      }
     } catch (e) {
       return res.status(400).send({
         error: {

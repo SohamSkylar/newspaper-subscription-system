@@ -9,6 +9,7 @@ const partnerRouter = require("./router/newsCompanyRouter");
 const subscriptionRouter = require("./router/subscriptionRouter");
 const mysqlPool = require("./database/mysqlConnection");
 const paperRouter = require("./router/paperRouter");
+const paymentRouter = require("./router/paymentRouter");
 
 const PORT = 8001;
 
@@ -32,6 +33,7 @@ app.use("/api/user", userRouter);
 app.use("/api/partner", partnerRouter);
 app.use("/api/paper", paperRouter);
 app.use("/api/subs", subscriptionRouter);
+app.use("/api/payment", paymentRouter);
 
 app.listen(PORT, () => {
   console.log(`server running on http://localhost:${PORT}`);
