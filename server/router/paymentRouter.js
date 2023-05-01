@@ -1,5 +1,6 @@
 const express = require("express");
 const { uuid } = require('uuidv4');
+const mysqlPool = require("../database/mysqlConnection");
 const stripe = require("stripe")("sk_test_51MhcS0SEQsEMOguBR6ICyqGYVurDG0Fy3gEIaRs1em8WPYSUtnfZO4WGORZe9qQod4JuboIRLeB4ukiPfiFGJawA00QXFRmHjj");
 
 const paymentRouter = express.Router();
