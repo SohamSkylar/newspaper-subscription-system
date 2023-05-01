@@ -6,17 +6,17 @@ const paymentRouter = express.Router();
 
 paymentRouter.post("/create-payment-intent", async (req, res) => {
     
-  const {token, amount, sub_id, paper_id, cust_id} = req.body;
+  const {token, amount,email, sub_id, paper_id, cust_id} = req.body;
   try {
-      const customer = await stripe.customer.create({
-        email:token.email,
-        source:token.d
+      const customer = await stripe.customers.create({
+        email:email,
+        source:token
       });
       const payment = await stripe.charges.create({
         amount: amount * 100,
-        currency: 'INR',
+        currency: 'USD',
         customer:customer.id,
-        receipt_email:token.email
+        receipt_email:email
       },{
         idempotencyKey: UUIDV4()
       })
