@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StripeCheckout from 'react-stripe-checkout';
+import { paymentRequest } from '../helpers/PaymentApi';
+import { Toaster, toast } from 'react-hot-toast';
 
-const StripeGateway = ({sub_id, paperDetails}) => {
+const StripeGateway = ({sub_id, paperID, paperDetails}) => {
+
+    const [token, setToken] = useState("")
 
     const tokenHandler = (token) => {
-      console.log(token)
+      setToken(token)
+      paymentHandler()
     }
 
-    const paper = paperDetails.filter((element) => {
+    const paymentHandler = () => {
+      let toastBox2 = toast.loading("Payment Processing...");
+      paper[0].paper_id = paperID
+      const paymentRequestPromise = paymentRequest(token, paper[0])
+      paymentRequestPromise.then(() => {
+        toast.success("Successfully Purchased!", {
+          id: toastBox2,
+        });
+      },(msg) => {
+        toast.error(`${msg}`, {
+          id: toastBox2,
+        });
+      })
+    }
+
+    let paper = paperDetails.filter((element) => {
       return element.sub_id.toString() === sub_id.toString()
     })
 
@@ -19,6 +39,7 @@ const StripeGateway = ({sub_id, paperDetails}) => {
     token={tokenHandler}
     stripeKey='pk_test_51MhcS0SEQsEMOguBBH6PnGCz8nCNfhGfpZo42EIfBV9MBTykymiJd6tSCsTeFwycvzrJbEcqQILBrKwq44j7ky7j00CZmJq9ds'
     >
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
       {console.log(paper[0])}
         <button type='button' className='p-2 px-2 text-sm font-medium text-gray-800 bg-green-500'>Pay Now</button>
     </StripeCheckout>

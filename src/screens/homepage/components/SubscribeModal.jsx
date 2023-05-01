@@ -6,12 +6,10 @@ import { toast } from "react-hot-toast";
 import { addCustomerSub, showPaperSub } from "../../../helpers/SubscriptionApi";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import StripeGateway from "../../../globalComponents/StripeGateway";
 
 const SubscribeModal = ({ open, setOpen, paperID }) => {
   const cancelButtonRef = useRef(null);
-  const navigate = useNavigate()
 
   const [availSub, setAvailSub] = useState([]);
 
@@ -41,7 +39,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
       let toastBox = toast.loading("Loading...");
       let loginPromise = addCustomerSub(values);
       loginPromise.then(
-        (resolve) => {
+        () => {
           toast.success("Successfully Purchased!", {
             id: toastBox,
           });
@@ -168,7 +166,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                       >
                         Purchase
                       </button> */}
-                      {formik.values.sub_id !== "" && <StripeGateway sub_id={formik.values.sub_id} paperDetails={availSub}/>}
+                      {formik.values.sub_id !== "" && <StripeGateway sub_id={formik.values.sub_id} paperDetails={availSub} paperID={paperID}/>}
                       <button
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto border-white"
