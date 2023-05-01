@@ -2,7 +2,7 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { loginUser } from "../../../helpers/CustomerApi";
 import SignUp from "../../../globalComponents/SignUp";
 import { useState } from "react";
@@ -48,7 +48,7 @@ const CardSignIn = ({ open, setOpen }) => {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+      {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -146,7 +146,7 @@ const CardSignIn = ({ open, setOpen }) => {
           </div>
         </Dialog>
       </Transition.Root>
-      <SignUp open={signUpModal} setOpen={(bool) => setSignUpModal(bool)} />
+      <SignUp open={signUpModal} setOpen={(bool) => setSignUpModal(bool)} cardSignIn={true} />
     </>
   );
 };

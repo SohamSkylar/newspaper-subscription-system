@@ -1,9 +1,11 @@
 import React from "react";
 import Sidebar from "./components/Sidebar";
+import { Toaster } from "react-hot-toast";
 
 const AdminPanel = () => {
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false}></Toaster> 
       <div className="flex">
         <Sidebar />
         <div className="p-14">

@@ -2,10 +2,10 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
-import { registerAdmin, registerUser } from "../helpers/CustomerApi";
-import { Toaster, toast } from "react-hot-toast";
+import { loginUser, registerUser } from "../helpers/CustomerApi";
+import { toast } from "react-hot-toast";
 
-const SignUp = ({ open, setOpen }) => {
+const SignUp = ({ open, setOpen, cardSignIn }) => {
   const cancelButtonRef = useRef(null);
 
   const formik = useFormik({
@@ -30,11 +30,27 @@ const SignUp = ({ open, setOpen }) => {
             toast.success("Successfully Registered", {
               id: toastBox,
             });
-            setTimeout(() => {
-              setOpen(false);
-            }, 1500);
-            
+            // setTimeout(() => {
+            //   setOpen(false);
+            // }, 1500);
             // successFunc()
+            let loginPromise = loginUser(values);
+            loginPromise.then(
+              (resolve) => {
+                toast.success("Logged in Successfully!", {
+                  id: toastBox,
+                });
+                localStorage.setItem("token", resolve);
+                  setOpen(false);
+                  if(cardSignIn) window.location.reload()
+              },
+              (msg) => {
+                toast.error(`${msg}`, {
+                  id: toastBox,
+                });
+                  setOpen(false);
+              }
+            );
           },
           (reject) => {
             if (reject === "DUPLICATE_USERNAME") {
@@ -83,7 +99,7 @@ const SignUp = ({ open, setOpen }) => {
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
-          <Toaster position="top-center" reverseOrder={false}></Toaster>
+          {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
           <div className="sm:flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
