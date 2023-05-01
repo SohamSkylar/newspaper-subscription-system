@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8001/api/payment";
+const BASE_URL = "http://lazy-gray-cocoon-wrap.cyclic.app/api/payment";
 
 export async function paymentRequest(paymentdetails, subDetails) {
 
