@@ -53,10 +53,7 @@ const Navbar = () => {
   const styleGrey = { color: "#17252A" };
 
   return (
-    <div
-      className="w-screen h-[80px] z-10 fixed drop-shadow-lg"
-      style={{ ...styleBeige, ...styleGrey }}
-    >
+    <div className="w-screen h-[80px] z-20 fixed drop-shadow-lg bg-white">
       <div className="px-2 flex justify-between items-center w-full h-full">
         <div className="flex items-center space-x-2">
           <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center sm:mx-0 sm:h-10 sm:w-10">
