@@ -55,10 +55,10 @@ const Homepage = () => {
         <div className="max-w-full" name="homePage">
           <HeroLanding />
         </div>
-        <div name="cardSection" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-2 p-8 items-center justify-items-center">
+        <div name="cardSection" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-2 p-8 items-center justify-items-center bg-zinc-200">
           {paperData.map((data) => {
             return (
-              <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name} paperID={data.paper_id} />
+              <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name} paperID={data.paper_id}/>
             );
           })}
 
