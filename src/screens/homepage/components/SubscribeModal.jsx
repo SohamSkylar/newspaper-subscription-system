@@ -6,11 +6,10 @@ import { toast } from "react-hot-toast";
 import { addCustomerSub, showPaperSub } from "../../../helpers/SubscriptionApi";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import StripeGateway from "../../../globalComponents/StripeGateway";
 
 const SubscribeModal = ({ open, setOpen, paperID }) => {
   const cancelButtonRef = useRef(null);
-  const navigate = useNavigate()
 
   const [availSub, setAvailSub] = useState([]);
 
@@ -40,7 +39,7 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
       let toastBox = toast.loading("Loading...");
       let loginPromise = addCustomerSub(values);
       loginPromise.then(
-        (resolve) => {
+        () => {
           toast.success("Successfully Purchased!", {
             id: toastBox,
           });
@@ -131,24 +130,26 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                             );
                           })}
                         </select>
-                        {formik.values.sub_id !== "" &&
-                          availSub
-                            .filter(
-                              (element) =>{
-                                return formik.values.sub_id.toString() === element.sub_id.toString()
-                              }
-                                
-                            ).map((data) => {
-                              console.log(data);
-                              return (
-                                <h1
-                                  htmlFor="company_id"
-                                  className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto  font-semibold text-gray-700 text-3xl"
-                                >
-                                 PRICE: ₹{data.price}
-                                </h1>
-                              );
-                            })
+                        {
+                          formik.values.sub_id !== "" &&
+                            availSub
+                              .filter((element) => {
+                                return (
+                                  formik.values.sub_id.toString() ===
+                                  element.sub_id.toString()
+                                );
+                              })
+                              .map((data, index) => {
+                                return (
+                                  <h1
+                                    key={index}
+                                    htmlFor="price"
+                                    className="block w-5/6 px-3 py-1.5 mt-3 text-left mx-auto  font-semibold text-gray-700 text-3xl"
+                                  >
+                                    PRICE: ₹{data.price}
+                                  </h1>
+                                );
+                              })
                           //   <input
                           //   type="password"
                           //   autoComplete="current-password"
@@ -161,12 +162,23 @@ const SubscribeModal = ({ open, setOpen, paperID }) => {
                       </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                      <button
+                      {/* <button
                         type="submit"
                         className="inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 sm:ml-3 sm:w-auto border-white"
                       >
                         Purchase
-                      </button>
+                      </button> */}
+                      {formik.values.sub_id !== "" && (
+                        <div onClick={() => {
+                          setOpen(false);
+                        }}>
+                          <StripeGateway
+                            sub_id={formik.values.sub_id}
+                            paperDetails={availSub}
+                            paperID={paperID}
+                          />
+                        </div>
+                      )}
                       <button
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto border-white"

@@ -42,3 +42,24 @@
   width: 8%;
   margin: auto;
 }
+
+@media (max-width: 1216px) {
+  .componentClass{
+    width: 15%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 736px) {
+  .componentClass{
+    width: 25%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 429px) {
+  .componentClass{
+    width: 35%;
+    margin: auto;
+  }
+}

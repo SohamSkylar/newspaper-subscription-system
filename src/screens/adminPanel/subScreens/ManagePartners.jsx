@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import { useFormik } from "formik";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { registerPartner } from "../../../helpers/PartnerApi";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -76,7 +76,7 @@ const ManagePartners = () => {
 
   return (
     <div className="flex">
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+      {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
       <Sidebar />
 
       {isAdmin ? (

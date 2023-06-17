@@ -6,7 +6,7 @@ import {
   addSubType,
   showAllSubType,
 } from "../../../helpers/SubscriptionApi";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { useEffect } from "react";
 import { showAllPapers } from "../../../helpers/NewspaperApi";
@@ -125,7 +125,7 @@ const ManageSubscription = () => {
 
   return (
     <div className="flex">
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+      {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
       <Sidebar />
 
       {isAdmin ? (

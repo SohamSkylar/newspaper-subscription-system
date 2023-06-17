@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ImUserPlus } from "react-icons/im";
 import { useFormik } from "formik";
 import { loginUser } from "../helpers/CustomerApi";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const SignIn = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
@@ -39,7 +39,7 @@ const SignIn = ({ open, setOpen }) => {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+      {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"

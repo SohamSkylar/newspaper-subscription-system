@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import { useFormik } from "formik";
 import { showAllPartners } from "../../../helpers/PartnerApi";
 import { useEffect } from "react";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { addNewspaper } from "../../../helpers/NewspaperApi";
 import { activeUser } from "../../../helpers/CustomerApi";
 
@@ -77,7 +77,7 @@ const ManagePapers = () => {
 
   return (
     <div className="flex">
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+      {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
       <Sidebar />
       {
         isAdmin?
