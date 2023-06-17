@@ -3,62 +3,63 @@
 @tailwind utilities;
 
 @layer base {
-    li {
-      @apply p-4 hover:text-teal-600
-    }
-  
-    button {
-      @apply text-white border bg-indigo-600 border-teal-400
-      hover:bg-transparent hover:text-teal-600 rounded-md
-    }
+  li {
+    @apply p-4 hover:text-teal-600
   }
 
-  @font-face {
-    font-family: "BarlowLight";
-    src: local("BarlowLight"),
-     url("./fonts/Barlow-Light.ttf") format("truetype");
-    font-weight: light;
-    }
+  button {
+    @apply text-white bg-indigo-600 rounded-md hover:text-teal-600
+  }
+}
 
-  @font-face {
-    font-family: "BarlowThin";
-    src: local("BarlowThin"),
-      url("./fonts/Barlow-Thin.ttf") format("truetype");
-    font-weight: thin;
-    }
-  @font-face {
-    font-family: "BarlowBold";
-    src: local("BarlowBold"),
-      url("./fonts/Barlow-Bold.ttf") format("truetype");
-    font-weight: bold;
-    }
-  @font-face {
-    font-family: "BarlowRegular";
-    src: local("BarlowRegular"),
-      url("./fonts/Barlow-Regular.ttf") format("truetype");
-    }
+@font-face {
+  font-family: "BarlowLight";
+  src: local("BarlowLight"),
+    url("./fonts/Barlow-Light.ttf") format("truetype");
+  font-weight: light;
+}
 
-.componentClass{
+@font-face {
+  font-family: "BarlowThin";
+  src: local("BarlowThin"),
+    url("./fonts/Barlow-Thin.ttf") format("truetype");
+  font-weight: thin;
+}
+
+@font-face {
+  font-family: "BarlowBold";
+  src: local("BarlowBold"),
+    url("./fonts/Barlow-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "BarlowRegular";
+  src: local("BarlowRegular"),
+    url("./fonts/Barlow-Regular.ttf") format("truetype");
+}
+
+.componentClass {
   width: 8%;
   margin: auto;
 }
 
 @media (max-width: 1216px) {
-  .componentClass{
+  .componentClass {
     width: 15%;
     margin: auto;
   }
 }
 
 @media (max-width: 736px) {
-  .componentClass{
+  .componentClass {
     width: 25%;
     margin: auto;
   }
 }
 
 @media (max-width: 429px) {
-  .componentClass{
+  .componentClass {
     width: 35%;
     margin: auto;
   }
