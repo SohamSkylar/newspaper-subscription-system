@@ -51,8 +51,8 @@ const NewspaperCard = ({ paperName, paperImage, paperID }) => {
           </div>
         </div>
       </div> */}
-      <div className="flex w-[100%] h-[100%]">
-        <div className="justify-center">
+      <div className="flex w-[100%] h-[100%] justify-center">
+        <div className="">
           <div className="max-w-sm py-14 ">
             <div className="bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg ">
               <img className="rounded-t-lg w-[390px] h-[254px] object-cover" src={paperImage} alt="" />
