@@ -55,7 +55,7 @@ const Homepage = () => {
         <div className="max-w-full" name="homePage">
           <HeroLanding />
         </div>
-        <div name="cardSection" className="container flex-wrap flex mt-4 justify-center m-auto overflow-hidden md:justify-evenly">
+        <div name="cardSection" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-2 p-8 items-center justify-items-center">
           {paperData.map((data) => {
             return (
               <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name} paperID={data.paper_id} />
@@ -72,3 +72,5 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
+// container flex-wrap flex mt-4 justify-center m-auto overflow-hidden md:justify-evenly

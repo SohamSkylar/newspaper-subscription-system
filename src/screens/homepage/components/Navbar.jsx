@@ -65,7 +65,7 @@ const Navbar = () => {
           <h1 className="text-3xl font-bold mr-4 sm:text-4xl font-face-bwb">
             PAPERPORTAL
           </h1>
-          <ul className="hidden md:flex font-face-bwr">
+          <ul className="hidden md:flex ">
             <li>
               <Link
                 to="homePage"
@@ -140,12 +140,12 @@ const Navbar = () => {
               // smooth={true}
               offset={-100}
               duration={500}
-              className="px-8 py-3 bg-emerald-400 text-white font-face-bwr mr-4"
+              className="px-8 py-3 bg-emerald-400 text-white  mr-4"
             >
               Status
             </button>
             <button
-              className="px-8 py-3 bg-slate-900 text-white font-face-bwr"
+              className="px-8 py-3 bg-slate-900 text-white "
               onClick={handledeleteToken}
             >
               Sign out
@@ -154,13 +154,13 @@ const Navbar = () => {
         ) : (
           <div className="hidden md:flex pr-4">
             <button
-              className="border-none bg-transparent text-black mr-4 font-face-bwr"
+              className="border-none bg-transparent text-black mr-4 "
               onClick={handleSignInModal}
             >
               Sign In
             </button>
             <button
-              className="px-8 py-3 font-face-bwr"
+              className="px-8 py-3 "
               onClick={handleSignUpModal}
             >
               Sign Up
@@ -180,7 +180,7 @@ const Navbar = () => {
 
       <ul
         className={
-          !nav ? "hidden" : "absolute bg-zinc-200 w-full px-8 font-face-bwr"
+          !nav ? "hidden" : "absolute bg-zinc-200 w-full px-8 "
         }
       >
         <li className="border-b-2 border-zinc-300 w-full">
@@ -245,12 +245,12 @@ const Navbar = () => {
               // smooth={true}
               offset={-100}
               duration={500}
-              className="bg-emerald-400 text-black px-8 py-3 mb-4 font-face-bwr"
+              className="bg-emerald-400 text-black px-8 py-3 mb-4 "
             >
               Status
             </button>
             <button
-              className="px-8 py-3  bg-slate-900 text-white font-face-bwr"
+              className="px-8 py-3  bg-slate-900 text-white "
               onClick={handledeleteToken}
             >
               Sign out
@@ -259,13 +259,13 @@ const Navbar = () => {
         ) : (
           <div className="flex flex-col my-4">
             <button
-              className="bg-transparent text-black px-8 py-3 mb-4 font-face-bwr"
+              className="bg-transparent text-black px-8 py-3 mb-4 "
               onClick={handleSignInModal}
             >
               Sign In
             </button>
             <button
-              className="px-8 py-3 font-face-bwr"
+              className="px-8 py-3 "
               onClick={handleSignUpModal}
             >
               Sign Up
