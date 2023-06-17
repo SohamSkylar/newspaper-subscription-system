@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/newspaper-subscription-system/static/css/main.c5ec912a.css",
-    "main.js": "/newspaper-subscription-system/static/js/main.cd058200.js",
+    "main.css": "/newspaper-subscription-system/static/css/main.2b65897d.css",
+    "main.js": "/newspaper-subscription-system/static/js/main.0856ecad.js",
     "static/js/787.2912d461.chunk.js": "/newspaper-subscription-system/static/js/787.2912d461.chunk.js",
     "static/media/Barlow-Bold.ttf": "/newspaper-subscription-system/static/media/Barlow-Bold.0cb1ab864072bf9e0991.ttf",
     "static/media/Barlow-Regular.ttf": "/newspaper-subscription-system/static/media/Barlow-Regular.e7eb634d040a6f384033.ttf",
     "static/media/Barlow-Light.ttf": "/newspaper-subscription-system/static/media/Barlow-Light.19f244ecb11218b9a7de.ttf",
     "static/media/Barlow-Thin.ttf": "/newspaper-subscription-system/static/media/Barlow-Thin.ed7c51aed47c9fd3db93.ttf",
     "index.html": "/newspaper-subscription-system/index.html",
-    "main.c5ec912a.css.map": "/newspaper-subscription-system/static/css/main.c5ec912a.css.map",
-    "main.cd058200.js.map": "/newspaper-subscription-system/static/js/main.cd058200.js.map",
+    "main.2b65897d.css.map": "/newspaper-subscription-system/static/css/main.2b65897d.css.map",
+    "main.0856ecad.js.map": "/newspaper-subscription-system/static/js/main.0856ecad.js.map",
     "787.2912d461.chunk.js.map": "/newspaper-subscription-system/static/js/787.2912d461.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5ec912a.css",
-    "static/js/main.cd058200.js"
+    "static/css/main.2b65897d.css",
+    "static/js/main.0856ecad.js"
   ]
 }
