@@ -4,11 +4,11 @@
 
 @layer base {
   li {
-    @apply p-4 hover:text-teal-600
+    @apply p-4 hover:text-rose-600
   }
 
   button {
-    @apply text-white bg-indigo-600 rounded-md hover:text-teal-600
+    @apply text-white py-2 px-4 bg-rose-500 font-semibold rounded-lg shadow-md hover:shadow-xl hover:bg-rose-700 transition duration-300
   }
 }
 

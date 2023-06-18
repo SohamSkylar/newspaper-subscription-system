@@ -140,7 +140,7 @@ const Navbar = () => {
               // smooth={true}
               offset={-100}
               duration={500}
-              className="px-8 py-3 bg-emerald-400 text-white  mr-4"
+              className="px-8 py-3 text-white mr-4"
             >
               Status
             </button>
@@ -160,7 +160,7 @@ const Navbar = () => {
               Sign In
             </button>
             <button
-              className="px-8 py-3 "
+              className="px-8 py-3"
               onClick={handleSignUpModal}
             >
               Sign Up
