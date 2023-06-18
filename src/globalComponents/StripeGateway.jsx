@@ -44,7 +44,7 @@ const StripeGateway = ({ sub_id, paperID, paperDetails }) => {
       >
         <button
           type="button"
-          className="p-2 px-2 text-sm font-medium text-gray-800 bg-green-500"
+          className="mt-3 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm sm:mt-0 sm:w-auto bg-rose-500 hover:bg-rose-700"
         >
           Pay Now
         </button>

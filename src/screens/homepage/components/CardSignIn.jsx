@@ -116,9 +116,9 @@ const CardSignIn = ({ open, setOpen }) => {
                           required
                         />
                         <div className="w-full mt-3 mx-auto text-end text-base font-medium text-gray-600">
-                        Not Registered?
-                          <button type="button" onClick={handleSignUpModal} className="hover:cursor-pointer mr-10 text-base font-medium text-green-700 ml-1 border-none">
-                           Register now
+                          Not Registered?
+                          <button type="button" onClick={handleSignUpModal} className="hover:cursor-pointer mr-10 text-base font-medium text-rose-400 hover:bg-zinc-100 ml-1 border-none">
+                            Register now
                           </button>
                         </div>
                       </div>
@@ -126,7 +126,7 @@ const CardSignIn = ({ open, setOpen }) => {
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                       <button
                         type="submit"
-                        className="inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 sm:ml-3 sm:w-auto border-white"
+                        className="inline-flex w-full justify-center rounded-md bg-rose-500 px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto border-white"
                       >
                         Sign in
                       </button>
