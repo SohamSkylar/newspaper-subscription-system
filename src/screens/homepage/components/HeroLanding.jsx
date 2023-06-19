@@ -1,4 +1,6 @@
 import React from 'react'
+import Homepage from '../Homepage'
+import { Link } from "react-scroll";
 
 const HeroLanding = () => {
     return (
@@ -8,7 +10,15 @@ const HeroLanding = () => {
                     <div className='flex flex-col justify-center md:items-start w-full px-2 py-2'>
                         <p className='text-4xl py-3 xl:text-7xl font-bold'>Elevate Your News Experience...</p>
                         <p className='text-md xl:text-2xl py-3'>Subscribe to Newspapers and Stay Ahead of the Curve!</p>
-                        <button className='py-2 px-6'>Browse</button>
+                        <button className='py-2 px-6'>
+                            <Link
+                                to="cardSection"
+                                smooth={true}
+                                offset={-200}
+                                duration={500}
+                            >
+                                Browse
+                            </Link></button>
                     </div>
                 </div>
 

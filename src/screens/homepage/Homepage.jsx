@@ -54,13 +54,18 @@ const Homepage = () => {
         <Navbar />
         <div className="max-w-full" name="homePage">
           <HeroLanding />
+
         </div>
-        <div name="cardSection" className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-2 p-8 items-center justify-items-center bg-zinc-200">
-          {paperData.map((data) => {
-            return (
-              <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name} paperID={data.paper_id}/>
-            );
-          })}
+        <div name="cardSection" >
+          <h1 className="text-5xl bg-zinc-200 flex flex-col justify-center items-center p-10 -mb-10 font-semibold">Browse Catalog</h1>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-2 p-8 items-center justify-items-center bg-zinc-200">
+            {paperData.map((data) => {
+              return (
+                <NewspaperCard key={data.paper_id} paperImage={data.img} paperName={data.name} paperID={data.paper_id} />
+              );
+            })}
+          </div>
+
 
         </div>
         <div name="contactUs" className="bg-black">
